@@ -1,0 +1,1 @@
+# ecoeden.inventory.api
