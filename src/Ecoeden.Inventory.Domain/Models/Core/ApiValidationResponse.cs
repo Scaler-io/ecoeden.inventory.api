@@ -3,7 +3,7 @@
 namespace Ecoeden.Inventory.Domain.Models.Core;
 public sealed class ApiValidationResponse : ApiResponse
 {
-    public ApiValidationResponse(string errorMessage) : base(ErrorCodes.BadRequest, errorMessage)
+    public ApiValidationResponse(string errorMessage = null) : base(ErrorCodes.BadRequest, errorMessage)
     {
         ErrorMessage = errorMessage ?? GetDefaultMessage(Code);
     }

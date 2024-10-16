@@ -4,7 +4,7 @@ using Ecoeden.Inventory.Domain.Models.Enums;
 namespace Ecoeden.Inventory.Domain.Models.Core;
 public class ApiResponse
 {
-    public ApiResponse(ErrorCodes code, string errorMessage)
+    public ApiResponse(ErrorCodes code, string errorMessage =  null)
     {
         Code = code;
         ErrorMessage = errorMessage ?? GetDefaultMessage(code);
