@@ -1,0 +1,19 @@
+services:
+  inventoryDb:
+   image: mongo
+
+  mongoexpress:
+   image: mongo-express
+
+# ecoeden.inventory.api:
+#   image: ${DOCKER_REGISTRY-}ecoedeninventoryapi
+#   build:
+#     context: .
+#     dockerfile: Ecoeden.Inventory.Api/Dockerfile
+
+volumes:
+  inventoryDb_data:
+  
+networks:
+  ecoeden_dev_net:
+   external: true

@@ -5,11 +5,13 @@ VisualStudioVersion = 17.10.35013.160
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ecoeden.Inventory.Api", "Ecoeden.Inventory.Api\Ecoeden.Inventory.Api.csproj", "{F6A20EFF-C20B-4555-9B41-9D0998B9D791}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecoeden.Inventory.Domain", "Ecoeden.Inventory.Domain\Ecoeden.Inventory.Domain.csproj", "{6500CD68-8A43-4027-8C99-9DD615003250}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ecoeden.Inventory.Domain", "Ecoeden.Inventory.Domain\Ecoeden.Inventory.Domain.csproj", "{6500CD68-8A43-4027-8C99-9DD615003250}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecoeden.Inventory.Application", "Ecoeden.Inventory.Application\Ecoeden.Inventory.Application.csproj", "{3A4F13E0-D192-4293-8080-82A80CF56D53}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ecoeden.Inventory.Application", "Ecoeden.Inventory.Application\Ecoeden.Inventory.Application.csproj", "{3A4F13E0-D192-4293-8080-82A80CF56D53}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecoeden.Inventory.Infrastructure", "Ecoeden.Inventory.Infrastructure\Ecoeden.Inventory.Infrastructure.csproj", "{1A02725B-FE39-41AF-B42E-A08DC9D84533}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ecoeden.Inventory.Infrastructure", "Ecoeden.Inventory.Infrastructure\Ecoeden.Inventory.Infrastructure.csproj", "{1A02725B-FE39-41AF-B42E-A08DC9D84533}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{AC27C808-EA95-43F9-8660-9076418339DC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{1A02725B-FE39-41AF-B42E-A08DC9D84533}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1A02725B-FE39-41AF-B42E-A08DC9D84533}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1A02725B-FE39-41AF-B42E-A08DC9D84533}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AC27C808-EA95-43F9-8660-9076418339DC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AC27C808-EA95-43F9-8660-9076418339DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AC27C808-EA95-43F9-8660-9076418339DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AC27C808-EA95-43F9-8660-9076418339DC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

@@ -1,0 +1,28 @@
+services:
+  inventoryDb:
+   container_name: inventoryDb
+   ports:
+    - 27018:27017
+   volumes:
+    - inventoryDb_data:/data/db
+   networks:
+    - ecoeden_dev_net
+    
+  mongoexpress:
+    container_name: inventoryDbViewer
+    ports:
+     - 8082:8081
+    environment:
+      - ME_CONFIG_OPTIONS_EDITORTHEME=yonce
+      - ME_CONFIG_MONGODB_SERVER=inventoryDb
+    depends_on:
+      - inventoryDb
+    networks:
+     - ecoeden_dev_net 
+     
+  # ecoeden.inventory.api:
+  #   environment:
+  #     - ASPNETCORE_ENVIRONMENT=Development
+  #     - ASPNETCORE_HTTP_PORTS=8080
+  #   ports:
+  #     - "8080"
