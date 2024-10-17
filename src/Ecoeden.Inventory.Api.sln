@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Ecoeden.Inventory.Infrastru
 EndProject
 Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{AC27C808-EA95-43F9-8660-9076418339DC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ecoeden.Swagger", "Ecoeden.Swagger\Ecoeden.Swagger.csproj", "{F909B2CB-9D7F-4102-83A7-D8A2746A488C}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{AC27C808-EA95-43F9-8660-9076418339DC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AC27C808-EA95-43F9-8660-9076418339DC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AC27C808-EA95-43F9-8660-9076418339DC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F909B2CB-9D7F-4102-83A7-D8A2746A488C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F909B2CB-9D7F-4102-83A7-D8A2746A488C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F909B2CB-9D7F-4102-83A7-D8A2746A488C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F909B2CB-9D7F-4102-83A7-D8A2746A488C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

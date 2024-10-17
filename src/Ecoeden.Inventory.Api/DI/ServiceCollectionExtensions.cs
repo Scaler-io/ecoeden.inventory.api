@@ -1,19 +1,24 @@
 ﻿
+using Asp.Versioning.ApiExplorer;
 using Ecoeden.Inventory.Api.Middlewares;
 using Ecoeden.Inventory.Api.Services;
 using Ecoeden.Inventory.Domain.Configurations;
 using Ecoeden.Inventory.Domain.Models.Core;
 using Ecoeden.Inventory.Domain.Models.Enums;
+using Ecoeden.Swagger;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
+using Swashbuckle.AspNetCore.Filters;
 
 namespace Ecoeden.Inventory.Api.DI;
 
 public static class ServiceCollectionExtensions
 {
-    public static IServiceCollection AddApplicationServices(this IServiceCollection services, IConfiguration configuration)
+    public static IServiceCollection AddApplicationServices(this IServiceCollection services, 
+        IConfiguration configuration,
+        SwaggerConfiguration swaggerConfiguration)
     {
         var env = services.BuildServiceProvider().GetRequiredService<IWebHostEnvironment>();
         var logger = Logging.GetLogger(configuration, env);
@@ -35,6 +40,13 @@ public static class ServiceCollectionExtensions
         services.AddHttpContextAccessor();
 
         services.AddEndpointsApiExplorer();
+        services.AddSwaggerExamplesFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
+        services.AddSwaggerExamples();
+        services.AddSwaggerGen(option =>
+        {
+            var provider = services.BuildServiceProvider().GetRequiredService<IApiVersionDescriptionProvider>();
+            swaggerConfiguration.SetupSwaggerGenService(option, provider);
+        });
 
         // setup api versioning
         services.AddApiVersioning(options =>
