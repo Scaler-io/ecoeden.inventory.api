@@ -39,6 +39,8 @@ public static class ServiceCollectionExtensions
         services.AddMemoryCache();
         services.AddHttpContextAccessor();
 
+        services.AddHealthChecks();
+
         services.AddEndpointsApiExplorer();
         services.AddSwaggerExamplesFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
         services.AddSwaggerExamples();

@@ -10,6 +10,7 @@
 
   <ItemGroup>
 	<PackageReference Include="Asp.Versioning.Mvc.ApiExplorer" Version="8.1.0" />
+	<PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="8.0.1" />
 	<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.4" />
     <PackageReference Include="Microsoft.VisualStudio.Azure.Containers.Tools.Targets" Version="1.21.0" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.9.0" />
@@ -22,10 +23,12 @@
 	<PackageReference Include="Serilog.Sinks.Console" Version="5.0.1" />
 	<PackageReference Include="Serilog.Sinks.Elasticsearch" Version="10.0.0" />
 	<PackageReference Include="Destructurama.Attributed" Version="4.0.0" />
+	<PackageReference Include="System.Text.Json" Version="8.0.5" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Ecoeden.Inventory.Application\Ecoeden.Inventory.Application.csproj" />
+    <ProjectReference Include="..\Ecoeden.Inventory.Infrastructure\Ecoeden.Inventory.Infrastructure.csproj" />
     <ProjectReference Include="..\Ecoeden.Swagger\Ecoeden.Swagger.csproj" />
   </ItemGroup>
 
@@ -33,6 +36,11 @@
     <Using Include="Serilog.ILogger">
       <Alias>ILogger</Alias>
     </Using>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\v1\" />
+    <Folder Include="AppData\" />
   </ItemGroup>
 
   <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="https://json.schemastore.org/aurora-1.1.json" /></VisualStudio></ProjectExtensions>

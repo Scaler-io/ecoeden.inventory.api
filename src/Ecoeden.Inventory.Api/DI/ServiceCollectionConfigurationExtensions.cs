@@ -6,11 +6,30 @@ public static class ServiceCollectionConfigurationExtensions
 {
     public static IServiceCollection ConfigureOptions(this IServiceCollection services, IConfiguration configuration)
     {
-        services.Configure<LoggingOption>(configuration.GetSection(LoggingOption.OptionName));
-        services.Configure<AppConfigOption>(configuration.GetSection(AppConfigOption.OptionName));
-        services.Configure<ElasticSearchOption>(configuration.GetSection(ElasticSearchOption.OptionName));
-        services.Configure<IdentityGroupAccessOption>(configuration.GetSection(IdentityGroupAccessOption.OptionName));
-        //services.Configure<MongoDbOption>(configuration.GetSection(MongoDbOption.OptionName));
+        services.AddOptions<LoggingOption>()
+            .BindConfiguration(LoggingOption.OptionName)
+            .ValidateDataAnnotations()
+            .ValidateOnStart();
+        
+        services.AddOptions<AppConfigOption>()
+            .BindConfiguration(AppConfigOption.OptionName)
+            .ValidateDataAnnotations()
+            .ValidateOnStart();
+        
+        services.AddOptions<ElasticSearchOption>()
+            .BindConfiguration(ElasticSearchOption.OptionName)
+            .ValidateDataAnnotations()
+            .ValidateOnStart();
+        
+        services.AddOptions<IdentityGroupAccessOption>()
+            .BindConfiguration(IdentityGroupAccessOption.OptionName)
+            .ValidateDataAnnotations()
+            .ValidateOnStart();
+
+        services.AddOptions<MongoDbOption>()
+            .BindConfiguration(MongoDbOption.OptionName)
+            .ValidateDataAnnotations()
+            .ValidateOnStart();
 
         return services;
     }

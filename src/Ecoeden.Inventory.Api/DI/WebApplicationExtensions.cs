@@ -1,5 +1,7 @@
-﻿using Ecoeden.Inventory.Api.Middlewares;
+﻿using Asp.Versioning.ApiExplorer;
+using Ecoeden.Inventory.Api.Middlewares;
 using Ecoeden.Swagger;
+using HealthChecks.UI.Client;
 
 namespace Ecoeden.Inventory.Api.DI;
 
@@ -15,8 +17,14 @@ public static class WebApplicationExtensions
         app.UseSwagger(SwaggerConfiguration.SetupSwaggerOptions)
             .UseSwaggerUI(option =>
             {
-                SwaggerConfiguration.SetupSwaggerUiOptions(option);
+                var provider = app.Services.GetRequiredService<IApiVersionDescriptionProvider>();
+                SwaggerConfiguration.SetupSwaggerUiOptions(option, provider);
             });
+
+        app.MapHealthChecks("api/v1/health", new()
+        {
+            ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
+        });
 
         app.UseMiddleware<CorrelationHeaderEnricher>()
             .UseMiddleware<RequestLoggerMiddleware>()
