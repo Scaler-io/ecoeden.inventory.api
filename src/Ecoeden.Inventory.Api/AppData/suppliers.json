@@ -1,0 +1,222 @@
+[
+  {
+    "Id": "64f09b8e1b2e78d24687f001",
+    "Name": "Green Leaf Nursery",
+    "Phone": "+1-555-123-4567",
+    "Address": "123 Maple Street, Oakville, CA 90210",
+    "Status": true,
+    "CreatedAt": "2024-01-15T08:45:00",
+    "UpdatedAt": "2024-01-15T08:45:00",
+    "CreatedBy": "admin",
+    "UpdatedBy": "admin"
+  },
+  {
+    "Id": "64f09b8e1b2e78d24687f002",
+    "Name": "Sunny Roots Supply",
+    "Phone": "+1-555-987-6543",
+    "Address": "789 Elm Avenue, Greenfield, WA 98122",
+    "Status": true,
+    "CreatedAt": "2024-01-16T10:30:00",
+    "UpdatedAt": "2024-01-16T10:30:00",
+    "CreatedBy": "admin",
+    "UpdatedBy": "admin"
+  },
+  {
+    "Id": "64f09b8e1b2e78d24687f003",
+    "Name": "EcoGrow Plant Suppliers",
+    "Phone": "+1-555-456-7890",
+    "Address": "456 Pine Road, Hillside, TX 75001",
+    "Status": true,
+    "CreatedAt": "2024-01-17T14:15:00",
+    "UpdatedAt": "2024-01-17T14:15:00",
+    "CreatedBy": "admin",
+    "UpdatedBy": "admin"
+  },
+  {
+    "Id": "64f09b8e1b2e78d24687f004",
+    "Name": "Botanical Wonders",
+    "Phone": "+1-555-222-3344",
+    "Address": "321 Birch Lane, Leafy Hollow, NY 10001",
+    "Status": false,
+    "CreatedAt": "2024-01-18T09:00:00",
+    "UpdatedAt": "2024-01-18T09:00:00",
+    "CreatedBy": "admin",
+    "UpdatedBy": "admin"
+  },
+  {
+    "Id": "64f09b8e1b2e78d24687f005",
+    "Name": "Verdant Horizons",
+    "Phone": "+1-555-555-6789",
+    "Address": "654 Spruce Street, Riverbend, OR 97477",
+    "Status": true,
+    "CreatedAt": "2024-01-19T11:45:00",
+    "UpdatedAt": "2024-01-19T11:45:00",
+    "CreatedBy": "admin",
+    "UpdatedBy": "admin"
+  },
+  {
+    "Id": "64f09b8e1b2e78d24687f006",
+    "Name": "Plant Paradise Suppliers",
+    "Phone": "+1-555-654-3210",
+    "Address": "852 Oak Ridge, Green Valley, UT 84005",
+    "Status": true,
+    "CreatedAt": "2024-01-20T12:00:00",
+    "UpdatedAt": "2024-01-20T12:00:00",
+    "CreatedBy": "admin",
+    "UpdatedBy": "admin"
+  },
+  {
+    "Id": "64f09b8e1b2e78d24687f007",
+    "Name": "Blossom City Greens",
+    "Phone": "+1-555-789-1234",
+    "Address": "369 Rose Boulevard, Bloomfield, MI 48322",
+    "Status": false,
+    "CreatedAt": "2024-01-21T09:30:00",
+    "UpdatedAt": "2024-01-21T09:30:00",
+    "CreatedBy": "admin",
+    "UpdatedBy": "admin"
+  },
+  {
+    "Id": "64f09b8e1b2e78d24687f008",
+    "Name": "Nature's Nest",
+    "Phone": "+1-555-222-9999",
+    "Address": "951 Willow Street, Fernhill, FL 32501",
+    "Status": true,
+    "CreatedAt": "2024-01-22T08:45:00",
+    "UpdatedAt": "2024-01-22T08:45:00",
+    "CreatedBy": "admin",
+    "UpdatedBy": "admin"
+  },
+  {
+    "Id": "64f09b8e1b2e78d24687f009",
+    "Name": "Herb Haven Supply Co.",
+    "Phone": "+1-555-444-8888",
+    "Address": "741 Fern Avenue, Mossy Creek, GA 30301",
+    "Status": true,
+    "CreatedAt": "2024-01-23T10:15:00",
+    "UpdatedAt": "2024-01-23T10:15:00",
+    "CreatedBy": "admin",
+    "UpdatedBy": "admin"
+  },
+  {
+    "Id": "64f09b8e1b2e78d24687f010",
+    "Name": "Evergreen Oasis",
+    "Phone": "+1-555-777-1212",
+    "Address": "159 Palm Street, Oasis Springs, AZ 85251",
+    "Status": true,
+    "CreatedAt": "2024-01-24T12:30:00",
+    "UpdatedAt": "2024-01-24T12:30:00",
+    "CreatedBy": "admin",
+    "UpdatedBy": "admin"
+  },
+  {
+    "Id": "64f09b8e1b2e78d24687f011",
+    "Name": "Verdure Gardens",
+    "Phone": "+1-555-987-1111",
+    "Address": "357 Juniper Trail, Green River, CO 81504",
+    "Status": true,
+    "CreatedAt": "2024-01-25T09:00:00",
+    "UpdatedAt": "2024-01-25T09:00:00",
+    "CreatedBy": "admin",
+    "UpdatedBy": "admin"
+  },
+  {
+    "Id": "64f09b8e1b2e78d24687f012",
+    "Name": "Tree Top Suppliers",
+    "Phone": "+1-555-333-4545",
+    "Address": "741 Cedar Drive, Pinewood, NV 89030",
+    "Status": false,
+    "CreatedAt": "2024-01-26T13:45:00",
+    "UpdatedAt": "2024-01-26T13:45:00",
+    "CreatedBy": "admin",
+    "UpdatedBy": "admin"
+  },
+  {
+    "Id": "64f09b8e1b2e78d24687f013",
+    "Name": "Leaf & Soil Growers",
+    "Phone": "+1-555-888-2323",
+    "Address": "963 Oak Branch, Hillsboro, IL 62049",
+    "Status": true,
+    "CreatedAt": "2024-01-27T10:00:00",
+    "UpdatedAt": "2024-01-27T10:00:00",
+    "CreatedBy": "admin",
+    "UpdatedBy": "admin"
+  },
+  {
+    "Id": "64f09b8e1b2e78d24687f014",
+    "Name": "Floral Springs Wholesale",
+    "Phone": "+1-555-555-7676",
+    "Address": "125 Blossom Street, Petalville, SC 29550",
+    "Status": true,
+    "CreatedAt": "2024-01-28T14:30:00",
+    "UpdatedAt": "2024-01-28T14:30:00",
+    "CreatedBy": "admin",
+    "UpdatedBy": "admin"
+  },
+  {
+    "Id": "64f09b8e1b2e78d24687f015",
+    "Name": "Plantation Pros",
+    "Phone": "+1-555-666-4444",
+    "Address": "487 Ivy Street, Arborville, PA 17033",
+    "Status": true,
+    "CreatedAt": "2024-01-29T16:00:00",
+    "UpdatedAt": "2024-01-29T16:00:00",
+    "CreatedBy": "admin",
+    "UpdatedBy": "admin"
+  },
+  {
+    "Id": "64f09b8e1b2e78d24687f016",
+    "Name": "Forest Friends Nursery",
+    "Phone": "+1-555-777-9999",
+    "Address": "741 Maplewood, Woodland, ME 04401",
+    "Status": true,
+    "CreatedAt": "2024-01-30T11:15:00",
+    "UpdatedAt": "2024-01-30T11:15:00",
+    "CreatedBy": "admin",
+    "UpdatedBy": "admin"
+  },
+  {
+    "Id": "64f09b8e1b2e78d24687f017",
+    "Name": "Lush Lands Nursery",
+    "Phone": "+1-555-222-7777",
+    "Address": "258 Meadow Lane, Greendale, IN 47129",
+    "Status": false,
+    "CreatedAt": "2024-01-31T09:45:00",
+    "UpdatedAt": "2024-01-31T09:45:00",
+    "CreatedBy": "admin",
+    "UpdatedBy": "admin"
+  },
+  {
+    "Id": "64f09b8e1b2e78d24687f018",
+    "Name": "Leafy Greens Supply",
+    "Phone": "+1-555-123-3333",
+    "Address": "159 Willow Avenue, Riverbend, MT 59901",
+    "Status": true,
+    "CreatedAt": "2024-02-01T13:00:00",
+    "UpdatedAt": "2024-02-01T13:00:00",
+    "CreatedBy": "admin",
+    "UpdatedBy": "admin"
+  },
+  {
+    "Id": "64f09b8e1b2e78d24687f019",
+    "Name": "Sprout House Suppliers",
+    "Phone": "+1-555-999-1010",
+    "Address": "951 Sprout Drive, Cloverfield, IA 50131",
+    "Status": true,
+    "CreatedAt": "2024-02-02T08:30:00",
+    "UpdatedAt": "2024-02-02T08:30:00",
+    "CreatedBy": "admin",
+    "UpdatedBy": "admin"
+  },
+  {
+    "Id": "64f09b8e1b2e78d24687f020",
+    "Name": "Nature's Bounty",
+    "Phone": "+1-555-888-5656",
+    "Address": "654 Sage Road, Garden City, TX 75002",
+    "Status": false,
+    "CreatedAt": "2024-02-03T14:45:00",
+    "UpdatedAt": "2024-02-03T14:45:00",
+    "CreatedBy": "admin",
+    "UpdatedBy": "admin"
+  }
+]

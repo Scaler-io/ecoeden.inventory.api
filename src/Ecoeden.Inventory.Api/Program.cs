@@ -1,6 +1,8 @@
 using Ecoeden.Inventory.Api;
 using Ecoeden.Inventory.Api.DI;
+using Ecoeden.Inventory.Api.Extensions;
 using Ecoeden.Inventory.Application.DI;
+using Ecoeden.Inventory.Infrastructure.Database;
 using Ecoeden.Inventory.Infrastructure.DI;
 using Ecoeden.Swagger;
 using Serilog;
@@ -26,6 +28,10 @@ var app = builder.Build();
 
 app.AddApplicationPipelines();
 
+app.SeedMongoDatabase(async context =>
+{
+    await InventorySeeder.SeedAsync(context);
+});
 
 try
 {
