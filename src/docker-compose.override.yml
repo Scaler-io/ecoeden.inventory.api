@@ -20,9 +20,30 @@ services:
     networks:
      - ecoeden_dev_net 
      
-  # ecoeden.inventory.api:
-  #   environment:
-  #     - ASPNETCORE_ENVIRONMENT=Development
-  #     - ASPNETCORE_HTTP_PORTS=8080
-  #   ports:
-  #     - "8080"
+  ecoeden.inventory.api:
+    container_name: Ecoeden.Inventory.Api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Docker
+      - Logging__IncludeScopes=false
+      - "Logging__LogOutputTemplate=[{Timestamp:dd-MM-yyyy HH:mm:ss, fff}] {Level} {Properties} [CorrelationId:{CorrelationId}] [Machine: {MachineName}] {CallerType}:{MemberName} {Message}{NewLine}{Exception}{NewLine}"
+      - Logging__Console__Enabled=true
+      - Logging__Console__LogLevel=Debug
+      - Logging__Elastic__Enabled=true
+      - Logging__Elastic__LogLevel=Debug
+      - AppConfigurations__ApplicationIdentifier=Ecoeden.Inventory.Api
+      - AppConfigurations__ApplicationEnvironment=docker
+      - AppConfigurations__CacheExpiration=60
+      - AppConfigurations__SupplierStorageCacheKey=supplier_cache
+      - "ApiDescription=Inventory api description"
+      - ApiOriginHost=localhost:5004
+      - IdentityGroupAccess__Authority=http://Ecoeden.IdentityServer 
+      - IdentityGroupAccess__Audience=ecoeden.inventory.api
+      - Elasticsearch__Uri=http://elasticsearch:9200
+      - MongoDb__ConnectionString=mongodb://inventoryDb:27017
+      - MongoDb__Database=InventoryDb
+    ports:
+      - "5004:8080"
+    depends_on:
+      - inventoryDb
+    networks:
+     - ecoeden_dev_net

@@ -5,11 +5,11 @@ services:
   mongoexpress:
    image: mongo-express
 
-# ecoeden.inventory.api:
-#   image: ${DOCKER_REGISTRY-}ecoedeninventoryapi
-#   build:
-#     context: .
-#     dockerfile: Ecoeden.Inventory.Api/Dockerfile
+  ecoeden.inventory.api:
+   image: ${DOCKER_REGISTRY-}ecoedeninventoryapi
+   build:
+    context: .
+    dockerfile: Ecoeden.Inventory.Api/Dockerfile
 
 volumes:
   inventoryDb_data:
