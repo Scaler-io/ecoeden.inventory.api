@@ -1,6 +1,9 @@
 ﻿using Ecoeden.Inventory.Application.Contracts.Database;
+using Ecoeden.Inventory.Application.Contracts.Factory;
 using Ecoeden.Inventory.Domain.Configurations;
+using Ecoeden.Inventory.Infrastructure.Caching;
 using Ecoeden.Inventory.Infrastructure.Database;
+using Ecoeden.Inventory.Infrastructure.Factory;
 using Ecoeden.Inventory.Infrastructure.HealthCheck;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -22,6 +25,10 @@ public static class InfrastructureServiceCollectionExtnsions
             return new MongoClient(mongoOptions.Value.ConnectionString);
         });
 
+        services.AddMemoryCache();
+        services.AddScoped<ICacheServiceBuildFactory, CacheServiceBuildFactory>();
+        services.AddScoped<DistributeCachingService>();
+        services.AddScoped <InMemoryCachingService>();
         services.AddScoped<IInventoryDbContext, InventoryDbContext>();
 
         return services;

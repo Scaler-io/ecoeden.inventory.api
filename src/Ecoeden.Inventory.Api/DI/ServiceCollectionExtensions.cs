@@ -36,7 +36,6 @@ public static class ServiceCollectionExtensions
                 configuration.SerializerSettings.Converters.Add(new StringEnumConverter());
             });
 
-        services.AddMemoryCache();
         services.AddHttpContextAccessor();
 
         services.AddHealthChecks();
