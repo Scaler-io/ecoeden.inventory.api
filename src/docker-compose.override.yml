@@ -41,6 +41,8 @@ services:
       - Elasticsearch__Uri=http://elasticsearch:9200
       - MongoDb__ConnectionString=mongodb://inventoryDb:27017
       - MongoDb__Database=InventoryDb
+      - ConnectionStrings__Redis=redis:6379
+      - Redis__InstanceName=Ecoeden.Inventory.Cache
     ports:
       - "5004:8080"
     depends_on:
