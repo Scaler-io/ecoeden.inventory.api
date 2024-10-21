@@ -1,8 +1,10 @@
 ﻿using Ecoeden.Inventory.Application.Contracts.Database;
+using Ecoeden.Inventory.Application.Contracts.Database.Repositories;
 using Ecoeden.Inventory.Application.Contracts.Factory;
 using Ecoeden.Inventory.Domain.Configurations;
 using Ecoeden.Inventory.Infrastructure.Caching;
 using Ecoeden.Inventory.Infrastructure.Database;
+using Ecoeden.Inventory.Infrastructure.Database.Repositories;
 using Ecoeden.Inventory.Infrastructure.Factory;
 using Ecoeden.Inventory.Infrastructure.HealthCheck;
 using Microsoft.Extensions.Configuration;
@@ -25,11 +27,17 @@ public static class InfrastructureServiceCollectionExtnsions
             return new MongoClient(mongoOptions.Value.ConnectionString);
         });
 
+        services.AddStackExchangeRedisCache(options =>
+        {
+            options.InstanceName = configuration["Redis:InstanceName"];
+            options.Configuration = configuration.GetConnectionString("Redis");
+        });
         services.AddMemoryCache();
         services.AddScoped<ICacheServiceBuildFactory, CacheServiceBuildFactory>();
         services.AddScoped<DistributeCachingService>();
         services.AddScoped <InMemoryCachingService>();
         services.AddScoped<IInventoryDbContext, InventoryDbContext>();
+        services.AddScoped(typeof(IDocumentRepository<>), typeof(DocumentRepository<>));
 
         return services;
     }

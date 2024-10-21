@@ -29,4 +29,8 @@ public static class LoggerExtensions
     {
         return logger.ForContext(LoggerConstants.CorrelationId, correlationId);
     }
+    public static ILogger WithSupplierID(this ILogger logger, string supplierId)
+    {
+        return logger.ForContext(LoggerConstants.SupplierId, supplierId);
+    }
 }

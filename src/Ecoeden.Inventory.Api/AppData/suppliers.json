@@ -1,9 +1,20 @@
 [
   {
     "Id": "64f09b8e1b2e78d24687f001",
-    "Name": "Green Leaf Nursery",
-    "Phone": "+1-555-123-4567",
-    "Address": "123 Maple Street, Oakville, CA 90210",
+    "Name": "Green India Nursery",
+    "ContactDetails": {
+      "Email": "contact@greenindia.com",
+      "Phone": "+919876543210",
+      "Address": {
+        "StreetNumber": "21",
+        "StreetName": "MG Road",
+        "StreetType": "Avenue",
+        "City": "Bengaluru",
+        "District": "Bangalore Urban",
+        "State": "Karnataka",
+        "PostCode": "560001"
+      }
+    },
     "Status": true,
     "CreatedAt": "2024-01-15T08:45:00",
     "UpdatedAt": "2024-01-15T08:45:00",
@@ -12,9 +23,20 @@
   },
   {
     "Id": "64f09b8e1b2e78d24687f002",
-    "Name": "Sunny Roots Supply",
-    "Phone": "+1-555-987-6543",
-    "Address": "789 Elm Avenue, Greenfield, WA 98122",
+    "Name": "Sunrise Growers",
+    "ContactDetails": {
+      "Email": "info@sunrisegrowers.in",
+      "Phone": "+919123456789",
+      "Address": {
+        "StreetNumber": "35",
+        "StreetName": "Anna Salai",
+        "StreetType": "Street",
+        "City": "Chennai",
+        "District": "Chennai",
+        "State": "Tamil Nadu",
+        "PostCode": "600002"
+      }
+    },
     "Status": true,
     "CreatedAt": "2024-01-16T10:30:00",
     "UpdatedAt": "2024-01-16T10:30:00",
@@ -23,10 +45,21 @@
   },
   {
     "Id": "64f09b8e1b2e78d24687f003",
-    "Name": "EcoGrow Plant Suppliers",
-    "Phone": "+1-555-456-7890",
-    "Address": "456 Pine Road, Hillside, TX 75001",
-    "Status": true,
+    "Name": "EcoGrow Plants",
+    "ContactDetails": {
+      "Email": "support@ecogrowplants.com",
+      "Phone": "+919234567890",
+      "Address": {
+        "StreetNumber": "12",
+        "StreetName": "Marine Drive",
+        "StreetType": "Road",
+        "City": "Mumbai",
+        "District": "Mumbai",
+        "State": "Maharashtra",
+        "PostCode": "400020"
+      }
+    },
+    "Status": false,
     "CreatedAt": "2024-01-17T14:15:00",
     "UpdatedAt": "2024-01-17T14:15:00",
     "CreatedBy": "admin",
@@ -34,10 +67,21 @@
   },
   {
     "Id": "64f09b8e1b2e78d24687f004",
-    "Name": "Botanical Wonders",
-    "Phone": "+1-555-222-3344",
-    "Address": "321 Birch Lane, Leafy Hollow, NY 10001",
-    "Status": false,
+    "Name": "Flora Hub",
+    "ContactDetails": {
+      "Email": "info@florahub.in",
+      "Phone": "+919345678901",
+      "Address": {
+        "StreetNumber": "52",
+        "StreetName": "Park Street",
+        "StreetType": "Lane",
+        "City": "Kolkata",
+        "District": "Kolkata",
+        "State": "West Bengal",
+        "PostCode": "700016"
+      }
+    },
+    "Status": true,
     "CreatedAt": "2024-01-18T09:00:00",
     "UpdatedAt": "2024-01-18T09:00:00",
     "CreatedBy": "admin",
@@ -45,9 +89,20 @@
   },
   {
     "Id": "64f09b8e1b2e78d24687f005",
-    "Name": "Verdant Horizons",
-    "Phone": "+1-555-555-6789",
-    "Address": "654 Spruce Street, Riverbend, OR 97477",
+    "Name": "Botanic Roots",
+    "ContactDetails": {
+      "Email": "sales@botanicroots.com",
+      "Phone": "+919456789012",
+      "Address": {
+        "StreetNumber": "78",
+        "StreetName": "MG Road",
+        "StreetType": "Avenue",
+        "City": "Pune",
+        "District": "Pune",
+        "State": "Maharashtra",
+        "PostCode": "411001"
+      }
+    },
     "Status": true,
     "CreatedAt": "2024-01-19T11:45:00",
     "UpdatedAt": "2024-01-19T11:45:00",
@@ -56,9 +111,20 @@
   },
   {
     "Id": "64f09b8e1b2e78d24687f006",
-    "Name": "Plant Paradise Suppliers",
-    "Phone": "+1-555-654-3210",
-    "Address": "852 Oak Ridge, Green Valley, UT 84005",
+    "Name": "Indian Plant Nursery",
+    "ContactDetails": {
+      "Email": "contact@indianplants.com",
+      "Phone": "+919567890123",
+      "Address": {
+        "StreetNumber": "30",
+        "StreetName": "Connaught Place",
+        "StreetType": "Circle",
+        "City": "New Delhi",
+        "District": "New Delhi",
+        "State": "Delhi",
+        "PostCode": "110001"
+      }
+    },
     "Status": true,
     "CreatedAt": "2024-01-20T12:00:00",
     "UpdatedAt": "2024-01-20T12:00:00",
@@ -67,9 +133,20 @@
   },
   {
     "Id": "64f09b8e1b2e78d24687f007",
-    "Name": "Blossom City Greens",
-    "Phone": "+1-555-789-1234",
-    "Address": "369 Rose Boulevard, Bloomfield, MI 48322",
+    "Name": "Blossom Fields",
+    "ContactDetails": {
+      "Email": "info@blossomfields.in",
+      "Phone": "+919678901234",
+      "Address": {
+        "StreetNumber": "90",
+        "StreetName": "Lalbagh Road",
+        "StreetType": "Road",
+        "City": "Bengaluru",
+        "District": "Bangalore Urban",
+        "State": "Karnataka",
+        "PostCode": "560004"
+      }
+    },
     "Status": false,
     "CreatedAt": "2024-01-21T09:30:00",
     "UpdatedAt": "2024-01-21T09:30:00",
@@ -78,9 +155,20 @@
   },
   {
     "Id": "64f09b8e1b2e78d24687f008",
-    "Name": "Nature's Nest",
-    "Phone": "+1-555-222-9999",
-    "Address": "951 Willow Street, Fernhill, FL 32501",
+    "Name": "Roots and Shoots",
+    "ContactDetails": {
+      "Email": "support@rootsandshoots.com",
+      "Phone": "+919789012345",
+      "Address": {
+        "StreetNumber": "15",
+        "StreetName": "Ring Road",
+        "StreetType": "Bypass",
+        "City": "Ahmedabad",
+        "District": "Ahmedabad",
+        "State": "Gujarat",
+        "PostCode": "380001"
+      }
+    },
     "Status": true,
     "CreatedAt": "2024-01-22T08:45:00",
     "UpdatedAt": "2024-01-22T08:45:00",
@@ -89,9 +177,20 @@
   },
   {
     "Id": "64f09b8e1b2e78d24687f009",
-    "Name": "Herb Haven Supply Co.",
-    "Phone": "+1-555-444-8888",
-    "Address": "741 Fern Avenue, Mossy Creek, GA 30301",
+    "Name": "Nature's Gift Nursery",
+    "ContactDetails": {
+      "Email": "contact@naturesgift.com",
+      "Phone": "+919890123456",
+      "Address": {
+        "StreetNumber": "66",
+        "StreetName": "Rajpath",
+        "StreetType": "Street",
+        "City": "Surat",
+        "District": "Surat",
+        "State": "Gujarat",
+        "PostCode": "395003"
+      }
+    },
     "Status": true,
     "CreatedAt": "2024-01-23T10:15:00",
     "UpdatedAt": "2024-01-23T10:15:00",
@@ -100,9 +199,20 @@
   },
   {
     "Id": "64f09b8e1b2e78d24687f010",
-    "Name": "Evergreen Oasis",
-    "Phone": "+1-555-777-1212",
-    "Address": "159 Palm Street, Oasis Springs, AZ 85251",
+    "Name": "Evergreen India",
+    "ContactDetails": {
+      "Email": "info@evergreenindia.com",
+      "Phone": "+919901234567",
+      "Address": {
+        "StreetNumber": "45",
+        "StreetName": "NH 44",
+        "StreetType": "Highway",
+        "City": "Hyderabad",
+        "District": "Hyderabad",
+        "State": "Telangana",
+        "PostCode": "500001"
+      }
+    },
     "Status": true,
     "CreatedAt": "2024-01-24T12:30:00",
     "UpdatedAt": "2024-01-24T12:30:00",
@@ -111,76 +221,153 @@
   },
   {
     "Id": "64f09b8e1b2e78d24687f011",
-    "Name": "Verdure Gardens",
-    "Phone": "+1-555-987-1111",
-    "Address": "357 Juniper Trail, Green River, CO 81504",
-    "Status": true,
-    "CreatedAt": "2024-01-25T09:00:00",
-    "UpdatedAt": "2024-01-25T09:00:00",
+    "Name": "Leafy Haven",
+    "ContactDetails": {
+      "Email": "info@leafyhaven.com",
+      "Phone": "+919012345678",
+      "Address": {
+        "StreetNumber": "19",
+        "StreetName": "Banjara Hills",
+        "StreetType": "Road",
+        "City": "Hyderabad",
+        "District": "Hyderabad",
+        "State": "Telangana",
+        "PostCode": "500034"
+      }
+    },
+    "Status": false,
+    "CreatedAt": "2024-01-25T15:00:00",
+    "UpdatedAt": "2024-01-25T15:00:00",
     "CreatedBy": "admin",
     "UpdatedBy": "admin"
   },
   {
     "Id": "64f09b8e1b2e78d24687f012",
-    "Name": "Tree Top Suppliers",
-    "Phone": "+1-555-333-4545",
-    "Address": "741 Cedar Drive, Pinewood, NV 89030",
-    "Status": false,
-    "CreatedAt": "2024-01-26T13:45:00",
-    "UpdatedAt": "2024-01-26T13:45:00",
+    "Name": "Garden Glory",
+    "ContactDetails": {
+      "Email": "contact@gardenglory.com",
+      "Phone": "+919123456789",
+      "Address": {
+        "StreetNumber": "54",
+        "StreetName": "Mission Road",
+        "StreetType": "Road",
+        "City": "Bengaluru",
+        "District": "Bangalore Urban",
+        "State": "Karnataka",
+        "PostCode": "560027"
+      }
+    },
+    "Status": true,
+    "CreatedAt": "2024-01-26T11:15:00",
+    "UpdatedAt": "2024-01-26T11:15:00",
     "CreatedBy": "admin",
     "UpdatedBy": "admin"
   },
   {
     "Id": "64f09b8e1b2e78d24687f013",
-    "Name": "Leaf & Soil Growers",
-    "Phone": "+1-555-888-2323",
-    "Address": "963 Oak Branch, Hillsboro, IL 62049",
+    "Name": "Plant Paradise",
+    "ContactDetails": {
+      "Email": "info@plantparadise.in",
+      "Phone": "+919234567890",
+      "Address": {
+        "StreetNumber": "88",
+        "StreetName": "Alkapuri Main",
+        "StreetType": "Street",
+        "City": "Vadodara",
+        "District": "Vadodara",
+        "State": "Gujarat",
+        "PostCode": "390007"
+      }
+    },
     "Status": true,
-    "CreatedAt": "2024-01-27T10:00:00",
-    "UpdatedAt": "2024-01-27T10:00:00",
+    "CreatedAt": "2024-01-27T12:00:00",
+    "UpdatedAt": "2024-01-27T12:00:00",
     "CreatedBy": "admin",
     "UpdatedBy": "admin"
   },
   {
     "Id": "64f09b8e1b2e78d24687f014",
-    "Name": "Floral Springs Wholesale",
-    "Phone": "+1-555-555-7676",
-    "Address": "125 Blossom Street, Petalville, SC 29550",
-    "Status": true,
-    "CreatedAt": "2024-01-28T14:30:00",
-    "UpdatedAt": "2024-01-28T14:30:00",
+    "Name": "Green Leaf Suppliers",
+    "ContactDetails": {
+      "Email": "support@greenleafsuppliers.com",
+      "Phone": "+919345678901",
+      "Address": {
+        "StreetNumber": "36",
+        "StreetName": "Nehru Nagar",
+        "StreetType": "Colony",
+        "City": "Bhopal",
+        "District": "Bhopal",
+        "State": "Madhya Pradesh",
+        "PostCode": "462003"
+      }
+    },
+    "Status": false,
+    "CreatedAt": "2024-01-28T09:45:00",
+    "UpdatedAt": "2024-01-28T09:45:00",
     "CreatedBy": "admin",
     "UpdatedBy": "admin"
   },
   {
     "Id": "64f09b8e1b2e78d24687f015",
-    "Name": "Plantation Pros",
-    "Phone": "+1-555-666-4444",
-    "Address": "487 Ivy Street, Arborville, PA 17033",
+    "Name": "Blossom Treasures",
+    "ContactDetails": {
+      "Email": "contact@blossomtreasures.in",
+      "Phone": "+919456789012",
+      "Address": {
+        "StreetNumber": "120",
+        "StreetName": "Mount Road",
+        "StreetType": "Street",
+        "City": "Chennai",
+        "District": "Chennai",
+        "State": "Tamil Nadu",
+        "PostCode": "600006"
+      }
+    },
     "Status": true,
-    "CreatedAt": "2024-01-29T16:00:00",
-    "UpdatedAt": "2024-01-29T16:00:00",
+    "CreatedAt": "2024-01-29T08:30:00",
+    "UpdatedAt": "2024-01-29T08:30:00",
     "CreatedBy": "admin",
     "UpdatedBy": "admin"
   },
   {
     "Id": "64f09b8e1b2e78d24687f016",
-    "Name": "Forest Friends Nursery",
-    "Phone": "+1-555-777-9999",
-    "Address": "741 Maplewood, Woodland, ME 04401",
+    "Name": "Nature Bloom",
+    "ContactDetails": {
+      "Email": "info@naturebloom.com",
+      "Phone": "+919567890123",
+      "Address": {
+        "StreetNumber": "48",
+        "StreetName": "MG Marg",
+        "StreetType": "Avenue",
+        "City": "Lucknow",
+        "District": "Lucknow",
+        "State": "Uttar Pradesh",
+        "PostCode": "226001"
+      }
+    },
     "Status": true,
-    "CreatedAt": "2024-01-30T11:15:00",
-    "UpdatedAt": "2024-01-30T11:15:00",
+    "CreatedAt": "2024-01-30T10:00:00",
+    "UpdatedAt": "2024-01-30T10:00:00",
     "CreatedBy": "admin",
     "UpdatedBy": "admin"
   },
   {
     "Id": "64f09b8e1b2e78d24687f017",
-    "Name": "Lush Lands Nursery",
-    "Phone": "+1-555-222-7777",
-    "Address": "258 Meadow Lane, Greendale, IN 47129",
-    "Status": false,
+    "Name": "Fresh Greens Nursery",
+    "ContactDetails": {
+      "Email": "contact@freshgreensnursery.in",
+      "Phone": "+919678901234",
+      "Address": {
+        "StreetNumber": "65",
+        "StreetName": "Ameerpet Road",
+        "StreetType": "Street",
+        "City": "Hyderabad",
+        "District": "Hyderabad",
+        "State": "Telangana",
+        "PostCode": "500016"
+      }
+    },
+    "Status": true,
     "CreatedAt": "2024-01-31T09:45:00",
     "UpdatedAt": "2024-01-31T09:45:00",
     "CreatedBy": "admin",
@@ -188,10 +375,21 @@
   },
   {
     "Id": "64f09b8e1b2e78d24687f018",
-    "Name": "Leafy Greens Supply",
-    "Phone": "+1-555-123-3333",
-    "Address": "159 Willow Avenue, Riverbend, MT 59901",
-    "Status": true,
+    "Name": "Sow and Grow",
+    "ContactDetails": {
+      "Email": "info@sowandgrow.com",
+      "Phone": "+919789012345",
+      "Address": {
+        "StreetNumber": "18",
+        "StreetName": "Sarjapur Road",
+        "StreetType": "Lane",
+        "City": "Bengaluru",
+        "District": "Bangalore Urban",
+        "State": "Karnataka",
+        "PostCode": "560035"
+      }
+    },
+    "Status": false,
     "CreatedAt": "2024-02-01T13:00:00",
     "UpdatedAt": "2024-02-01T13:00:00",
     "CreatedBy": "admin",
@@ -199,9 +397,20 @@
   },
   {
     "Id": "64f09b8e1b2e78d24687f019",
-    "Name": "Sprout House Suppliers",
-    "Phone": "+1-555-999-1010",
-    "Address": "951 Sprout Drive, Cloverfield, IA 50131",
+    "Name": "Flourish Flora",
+    "ContactDetails": {
+      "Email": "support@flourishflora.in",
+      "Phone": "+919890123456",
+      "Address": {
+        "StreetNumber": "73",
+        "StreetName": "Station Road",
+        "StreetType": "Road",
+        "City": "Jaipur",
+        "District": "Jaipur",
+        "State": "Rajasthan",
+        "PostCode": "302001"
+      }
+    },
     "Status": true,
     "CreatedAt": "2024-02-02T08:30:00",
     "UpdatedAt": "2024-02-02T08:30:00",
@@ -210,12 +419,45 @@
   },
   {
     "Id": "64f09b8e1b2e78d24687f020",
-    "Name": "Nature's Bounty",
-    "Phone": "+1-555-888-5656",
-    "Address": "654 Sage Road, Garden City, TX 75002",
-    "Status": false,
+    "Name": "Roots Revival",
+    "ContactDetails": {
+      "Email": "info@rootsrevival.com",
+      "Phone": "+919901234567",
+      "Address": {
+        "StreetNumber": "62",
+        "StreetName": "Shastri Nagar",
+        "StreetType": "Street",
+        "City": "Kanpur",
+        "District": "Kanpur",
+        "State": "Uttar Pradesh",
+        "PostCode": "208005"
+      }
+    },
+    "Status": true,
     "CreatedAt": "2024-02-03T14:45:00",
     "UpdatedAt": "2024-02-03T14:45:00",
+    "CreatedBy": "admin",
+    "UpdatedBy": "admin"
+  },
+  {
+    "Id": "64f09b8e1b2e78d24687f021",
+    "Name": "Verdant Vista",
+    "ContactDetails": {
+      "Email": "contact@verdantvista.in",
+      "Phone": "+919012345678",
+      "Address": {
+        "StreetNumber": "7",
+        "StreetName": "Golf Course Road",
+        "StreetType": "Road",
+        "City": "Gurugram",
+        "District": "Gurugram",
+        "State": "Haryana",
+        "PostCode": "122002"
+      }
+    },
+    "Status": true,
+    "CreatedAt": "2024-02-04T16:00:00",
+    "UpdatedAt": "2024-02-04T16:00:00",
     "CreatedBy": "admin",
     "UpdatedBy": "admin"
   }

@@ -20,5 +20,16 @@
 	<ItemGroup>
 	<ProjectReference Include="..\Ecoeden.Inventory.Domain\Ecoeden.Inventory.Domain.csproj" />
 	</ItemGroup>
+	
+	<ItemGroup>
+	  <Folder Include="Features\Suppliers\Command\" />
+	  <Folder Include="Features\Suppliers\Query\ListSuppliers\" />
+	</ItemGroup>
+	
+	<ItemGroup>
+	  <Using Include="Serilog.ILogger">
+	    <Alias>ILogger</Alias>
+	  </Using>
+	</ItemGroup>
 
 </Project>
