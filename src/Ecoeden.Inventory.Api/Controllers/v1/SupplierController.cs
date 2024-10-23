@@ -1,9 +1,11 @@
 ﻿using Asp.Versioning;
+using Ecoeden.Inventory.Api.Filters;
 using Ecoeden.Inventory.Api.Services;
 using Ecoeden.Inventory.Application.Extensions;
 using Ecoeden.Inventory.Application.Features.Suppliers.Query.GetSupplier;
 using Ecoeden.Inventory.Domain.Models.Core;
 using Ecoeden.Inventory.Domain.Models.Dtos;
+using Ecoeden.Inventory.Domain.Models.Enums;
 using Ecoeden.Swagger;
 using Ecoeden.Swagger.Examples;
 using Ecoeden.Swagger.Examples.Supplier;
@@ -33,6 +35,7 @@ public class SupplierController(IMediator _mediator, ILogger logger, IIdentitySe
     // 500
     [ProducesResponseType(typeof(ApiExceptionResponse), (int)HttpStatusCode.InternalServerError)]
     [SwaggerResponseExample((int)HttpStatusCode.InternalServerError, typeof(InternalServerErrorResponseEaxample))]
+    [RequirePermission(ApiAccess.InventoryRead)]
     public async Task<IActionResult> GetSupplier([FromRoute] string id)
     {
         Logger.Here().MethodEntered();
