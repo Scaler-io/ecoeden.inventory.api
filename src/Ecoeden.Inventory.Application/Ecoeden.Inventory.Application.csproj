@@ -23,7 +23,6 @@
 	
 	<ItemGroup>
 	  <Folder Include="Features\Suppliers\Command\" />
-	  <Folder Include="Features\Suppliers\Query\ListSuppliers\" />
 	</ItemGroup>
 	
 	<ItemGroup>

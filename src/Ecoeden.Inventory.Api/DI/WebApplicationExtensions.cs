@@ -21,14 +21,14 @@ public static class WebApplicationExtensions
                 SwaggerConfiguration.SetupSwaggerUiOptions(option, provider);
             });
 
-        app.MapHealthChecks("api/v1/health", new()
-        {
-            ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse
-        });
-
         app.UseMiddleware<CorrelationHeaderEnricher>()
             .UseMiddleware<RequestLoggerMiddleware>()
             .UseMiddleware<GlobalExceptionMiddleware>();
+
+        app.MapHealthChecks("api/v1/health", new()
+        {
+            ResponseWriter = UIResponseWriter.WriteHealthCheckUIResponse,
+        });
 
         app.UseAuthentication();
 

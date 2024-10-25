@@ -6,7 +6,10 @@ using Ecoeden.Inventory.Domain.Configurations;
 using Ecoeden.Inventory.Domain.Models.Core;
 using Ecoeden.Inventory.Domain.Models.Enums;
 using Ecoeden.Swagger;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
@@ -72,9 +75,24 @@ public static class ServiceCollectionExtensions
         services.AddTransient<RequestLoggerMiddleware>();
         services.AddTransient<GlobalExceptionMiddleware>();
 
-        var identityGroupAccess = configuration
-        .GetSection("IdentityGroupAccess")
-            .Get<IdentityGroupAccessOption>();
+        var identityGroupAccess = services.BuildServiceProvider().GetRequiredService<IOptions<IdentityGroupAccessOption>>();
+        services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(options =>
+            {
+                options.RequireHttpsMetadata = false;
+                options.Audience = identityGroupAccess.Value.Audience;
+                options.Authority = identityGroupAccess.Value.Authority;
+                options.TokenValidationParameters = new TokenValidationParameters
+                {
+                    ValidateIssuerSigningKey = true,
+                    ValidIssuer = identityGroupAccess.Value.Authority,
+                    ValidAudience = identityGroupAccess.Value.Audience,
+                    ValidateAudience = true,
+                    ValidateIssuer = true,
+                    ClockSkew = TimeSpan.Zero
+                };
+            });
+
 
         // custom interface and its implementations
         services.AddSingleton<IIdentityService, IdentityService>();

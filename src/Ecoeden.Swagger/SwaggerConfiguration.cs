@@ -30,7 +30,7 @@ public sealed class SwaggerConfiguration
     {
         var environmentName = Environment.GetEnvironmentVariable(EnvironmentConstants.SwaggerEnvironmentName) ??
                             DefaultEnvironmentName;
-        var apiName = $"Catalogue API {environmentName}".Trim();
+        var apiName = $"Inventory API {environmentName}".Trim();
         return apiName;
     }
 
@@ -78,7 +78,7 @@ public sealed class SwaggerConfiguration
         {
             options.SwaggerEndpoint(
                     $"/swagger/{description.GroupName}/swagger.json",
-                    $"Catalogue API - {description.GroupName.ToUpperInvariant()}");
+                    $"Inventory API - {description.GroupName.ToUpperInvariant()}");
         }
     }
 }

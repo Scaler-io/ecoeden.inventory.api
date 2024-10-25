@@ -1,7 +1,6 @@
 ﻿using Ecoeden.Inventory.Application.Contracts.Caching;
 using Ecoeden.Inventory.Domain.Configurations;
 using Ecoeden.Inventory.Domain.Models.Enums;
-using Microsoft.AspNetCore.Builder.Extensions;
 using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Options;
 using Newtonsoft.Json;
@@ -24,7 +23,6 @@ public sealed class DistributeCachingService(IDistributedCache distributedCache,
     {
         var serializedData = JsonConvert.SerializeObject(value);
         var cacheOptions = new DistributedCacheEntryOptions();
-        cacheOptions.SetSlidingExpiration(TimeSpan.FromSeconds(45));
         cacheOptions.SetAbsoluteExpiration(TimeSpan.FromMinutes(
                 expirationTime ?? _appConfigOptions.CacheExpiration
             ));
