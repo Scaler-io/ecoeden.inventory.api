@@ -2,6 +2,7 @@
 using Ecoeden.Inventory.Api.Filters;
 using Ecoeden.Inventory.Api.Services;
 using Ecoeden.Inventory.Application.Extensions;
+using Ecoeden.Inventory.Application.Features.Suppliers.Command.UpsertSupplier;
 using Ecoeden.Inventory.Application.Features.Suppliers.Query.GetSupplier;
 using Ecoeden.Inventory.Application.Features.Suppliers.Query.ListSuppliers;
 using Ecoeden.Inventory.Domain.Models.Core;
@@ -26,7 +27,7 @@ public class SupplierController(IMediator _mediator, ILogger logger, IIdentitySe
 {
     private readonly IMediator _mediator = _mediator;
 
-    [HttpGet("suppliers")]
+    [HttpGet]
     [SwaggerHeader("CorrelationId", Description = "expects unique correlation id")]
     [SwaggerOperation(OperationId = "ListSuppliers", Description = "Lists all suppliers")]
     // 200
@@ -48,7 +49,7 @@ public class SupplierController(IMediator _mediator, ILogger logger, IIdentitySe
         return OkOrFailure(result);
     }
 
-    [HttpGet("supplier/{id}")]
+    [HttpGet("{id}")]
     [SwaggerHeader("CorrelationId", Description = "expects unique correlation id")]
     [SwaggerOperation(OperationId = "GetSupplier", Description = "Fetches supplier details by id")]
     // 200
@@ -67,6 +68,14 @@ public class SupplierController(IMediator _mediator, ILogger logger, IIdentitySe
         var query = new GetSupplierQuery(id, RequestInformation);
         var result = await _mediator.Send(query);
         Logger.Here().MethodExited();
+        return OkOrFailure(result);
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> UpsertSupplier([FromBody] SupplierDto supplier)
+    {
+        var command = new UpsertSupplierCommand(supplier, RequestInformation);
+        var result = await _mediator.Send(command);
         return OkOrFailure(result);
     }
 }

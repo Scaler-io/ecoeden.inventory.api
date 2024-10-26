@@ -39,6 +39,8 @@ public static class ServiceCollectionExtensions
                 configuration.SerializerSettings.Converters.Add(new StringEnumConverter());
             });
 
+        services.AddRouting(options => options.LowercaseUrls = true);
+
         services.AddHttpContextAccessor();
 
         services.AddHealthChecks();

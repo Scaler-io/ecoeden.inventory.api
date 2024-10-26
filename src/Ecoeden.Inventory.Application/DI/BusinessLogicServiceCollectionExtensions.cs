@@ -1,4 +1,5 @@
-﻿using MediatR;
+﻿using Ecoeden.Inventory.Application.Behaviors;
+using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using System.Reflection;
 
@@ -11,6 +12,8 @@ public static class BusinessLogicServiceCollectionExtensions
         services.AddMediatR(AppDomain.CurrentDomain.GetAssemblies());
         services.AddMediatR(Assembly.GetExecutingAssembly());
         services.AddValidators();
+        services.AddTransient(typeof(IPipelineBehavior<,>), typeof(ValidationBehavior<,>));
+
         return services;
     }
 }

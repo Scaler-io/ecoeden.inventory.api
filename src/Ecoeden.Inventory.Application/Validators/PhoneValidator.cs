@@ -3,6 +3,7 @@ public class PhoneValidator
 {
     public static bool IsValid(string phone)
     {
-        return phone.StartsWith("+91") && phone.Substring(1).Length == 10;
+        if(string.IsNullOrEmpty(phone)) return false;
+        return phone.StartsWith("+91") && phone.Substring(3).Length == 10;
     }
 }

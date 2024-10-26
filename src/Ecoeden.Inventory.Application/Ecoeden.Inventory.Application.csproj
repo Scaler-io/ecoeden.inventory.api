@@ -22,10 +22,6 @@
 	</ItemGroup>
 	
 	<ItemGroup>
-	  <Folder Include="Features\Suppliers\Command\" />
-	</ItemGroup>
-	
-	<ItemGroup>
 	  <Using Include="Serilog.ILogger">
 	    <Alias>ILogger</Alias>
 	  </Using>

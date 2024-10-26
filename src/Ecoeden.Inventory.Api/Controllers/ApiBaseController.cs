@@ -9,7 +9,7 @@ using System.Net;
 
 namespace Ecoeden.Inventory.Api.Controllers;
 
-[Route("api/v{version:apiVersion}")]
+[Route("api/v{version:apiVersion}/[controller]")]
 [ApiController]
 public class ApiBaseController(ILogger logger, IIdentityService identityService) : ControllerBase
 {
