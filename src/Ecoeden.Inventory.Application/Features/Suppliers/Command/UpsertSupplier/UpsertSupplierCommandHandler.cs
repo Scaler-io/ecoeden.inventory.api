@@ -54,7 +54,7 @@ public class UpsertSupplierCommandHandler(ILogger logger,
 
         // cache invalidation
         await _cacheService.RemoveAsync(_appConfigOptions.SupplierStorageCacheKey, cancellationToken);
-        _logger.Here().Information("Supplier created/updated successfully");
+        _logger.Here().WithSupplierID(supplierDto.Id).Information("Supplier created/updated successfully");
         _logger.Here().MethodExited();
 
         return Result<SupplierDto>.Success(supplierDto);

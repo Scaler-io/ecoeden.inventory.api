@@ -2,9 +2,11 @@
 using Ecoeden.Inventory.Api.Filters;
 using Ecoeden.Inventory.Api.Services;
 using Ecoeden.Inventory.Application.Extensions;
+using Ecoeden.Inventory.Application.Features.Suppliers.Command.DeleteSupplier;
 using Ecoeden.Inventory.Application.Features.Suppliers.Command.UpsertSupplier;
 using Ecoeden.Inventory.Application.Features.Suppliers.Query.GetSupplier;
 using Ecoeden.Inventory.Application.Features.Suppliers.Query.ListSuppliers;
+using Ecoeden.Inventory.Domain.Entities;
 using Ecoeden.Inventory.Domain.Models.Core;
 using Ecoeden.Inventory.Domain.Models.Dtos;
 using Ecoeden.Inventory.Domain.Models.Enums;
@@ -83,11 +85,33 @@ public class SupplierController(IMediator _mediator, ILogger logger, IIdentitySe
     // 500
     [ProducesResponseType(typeof(ApiExceptionResponse), StatusCodes.Status500InternalServerError)]
     [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseEaxample))]
-    [RequirePermission(ApiAccess.InventoryRead)]
+    [RequirePermission(ApiAccess.InventoryWrite)]
     public async Task<IActionResult> CreateOrUpdateSupplier([FromBody] SupplierDto supplier)
     {
         Logger.Here().MethodEntered();
         var command = new UpsertSupplierCommand(supplier, RequestInformation);
+        var result = await _mediator.Send(command);
+        Logger.Here().MethodExited();
+        return OkOrFailure(result);
+    }
+
+    [HttpDelete("{id}")]
+    [SwaggerHeader("CorrelationId", Description = "expects unique correlation id")]
+    [SwaggerOperation(OperationId = "DeleteSupplier", Description = "Deletes supplier")]
+    // 200
+    [ProducesResponseType(typeof(bool), StatusCodes.Status200OK)]
+    [SwaggerResponseExample(StatusCodes.Status200OK, typeof(SupplierDeleteResponse))]
+    // 404
+    [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
+    [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(NotFoundResponseExample))]
+    // 500
+    [ProducesResponseType(typeof(ApiExceptionResponse), StatusCodes.Status500InternalServerError)]
+    [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseEaxample))]
+    [RequirePermission(ApiAccess.InventoryWrite)]
+    public async Task<IActionResult> DeleteSupplier([FromRoute] string id)
+    {
+        Logger.Here().MethodEntered();
+        var command = new DeleteSupplierCommand(id, RequestInformation);
         var result = await _mediator.Send(command);
         Logger.Here().MethodExited();
         return OkOrFailure(result);
