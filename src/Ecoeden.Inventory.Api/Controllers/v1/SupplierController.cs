@@ -31,14 +31,14 @@ public class SupplierController(IMediator _mediator, ILogger logger, IIdentitySe
     [SwaggerHeader("CorrelationId", Description = "expects unique correlation id")]
     [SwaggerOperation(OperationId = "ListSuppliers", Description = "Lists all suppliers")]
     // 200
-    [ProducesResponseType(typeof(List<SupplierDto>), (int)HttpStatusCode.OK)]
-    [SwaggerResponseExample((int)HttpStatusCode.OK, typeof(SupplierListResponseExample))]
+    [ProducesResponseType(typeof(List<SupplierDto>), StatusCodes.Status200OK)]
+    [SwaggerResponseExample(StatusCodes.Status200OK, typeof(SupplierListResponseExample))]
     // 404
-    [ProducesResponseType(typeof(ApiResponse), (int)HttpStatusCode.NotFound)]
-    [SwaggerResponseExample((int)HttpStatusCode.NotFound, typeof(NotFoundResponseExample))]
+    [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
+    [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(NotFoundResponseExample))]
     // 500
-    [ProducesResponseType(typeof(ApiExceptionResponse), (int)HttpStatusCode.InternalServerError)]
-    [SwaggerResponseExample((int)HttpStatusCode.InternalServerError, typeof(InternalServerErrorResponseEaxample))]
+    [ProducesResponseType(typeof(ApiExceptionResponse), StatusCodes.Status500InternalServerError)]
+    [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseEaxample))]
     [RequirePermission(ApiAccess.InventoryRead)]
     public async Task<IActionResult> ListSuppliers()
     {
@@ -53,14 +53,14 @@ public class SupplierController(IMediator _mediator, ILogger logger, IIdentitySe
     [SwaggerHeader("CorrelationId", Description = "expects unique correlation id")]
     [SwaggerOperation(OperationId = "GetSupplier", Description = "Fetches supplier details by id")]
     // 200
-    [ProducesResponseType(typeof(SupplierDto), (int)HttpStatusCode.OK)]
-    [SwaggerResponseExample((int)HttpStatusCode.OK, typeof(SupplierResponseExample))]
+    [ProducesResponseType(typeof(SupplierDto), StatusCodes.Status200OK)]
+    [SwaggerResponseExample(StatusCodes.Status200OK, typeof(SupplierResponseExample))]
     // 404
-    [ProducesResponseType(typeof(ApiResponse), (int)HttpStatusCode.NotFound)]
-    [SwaggerResponseExample((int)HttpStatusCode.NotFound, typeof(NotFoundResponseExample))]
+    [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
+    [SwaggerResponseExample(StatusCodes.Status404NotFound, typeof(NotFoundResponseExample))]
     // 500
-    [ProducesResponseType(typeof(ApiExceptionResponse), (int)HttpStatusCode.InternalServerError)]
-    [SwaggerResponseExample((int)HttpStatusCode.InternalServerError, typeof(InternalServerErrorResponseEaxample))]
+    [ProducesResponseType(typeof(ApiExceptionResponse), StatusCodes.Status500InternalServerError)]
+    [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseEaxample))]
     [RequirePermission(ApiAccess.InventoryRead)]
     public async Task<IActionResult> GetSupplier([FromRoute] string id)
     {
@@ -72,10 +72,24 @@ public class SupplierController(IMediator _mediator, ILogger logger, IIdentitySe
     }
 
     [HttpPost]
-    public async Task<IActionResult> UpsertSupplier([FromBody] SupplierDto supplier)
+    [SwaggerHeader("CorrelationId", Description = "expects unique correlation id")]
+    [SwaggerOperation(OperationId = "CreateOrUpdateSupplier", Description = "Creates or updates supplier")]
+    // 200
+    [ProducesResponseType(typeof(SupplierDto), StatusCodes.Status200OK)]
+    [SwaggerResponseExample(StatusCodes.Status200OK, typeof(SupplierResponseExample))]
+    // 400
+    [ProducesResponseType(typeof(ApiValidationResponse), StatusCodes.Status400BadRequest)]
+    [SwaggerResponseExample(StatusCodes.Status400BadRequest, typeof(BadRequestResponseExample))]
+    // 500
+    [ProducesResponseType(typeof(ApiExceptionResponse), StatusCodes.Status500InternalServerError)]
+    [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseEaxample))]
+    [RequirePermission(ApiAccess.InventoryRead)]
+    public async Task<IActionResult> CreateOrUpdateSupplier([FromBody] SupplierDto supplier)
     {
+        Logger.Here().MethodEntered();
         var command = new UpsertSupplierCommand(supplier, RequestInformation);
         var result = await _mediator.Send(command);
+        Logger.Here().MethodExited();
         return OkOrFailure(result);
     }
 }

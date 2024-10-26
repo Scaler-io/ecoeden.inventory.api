@@ -16,7 +16,7 @@ public sealed class SupplierMappingProfile : Profile
                 UpdatedAt = DateTimeHelper.ConvertUtcToIst(s.UpdatedAt).ToString("dd/MM/yyyy HH:mm:ss tt"),
                 CreatedBy = s.CreatedBy,
                 UpdatedBy = s.UpdatedBy,
-            }));
+            })).ReverseMap();
 
     }
 }

@@ -10,4 +10,17 @@ public class BaseEntity
     public DateTime UpdatedAt { get; set; }
     public string CreatedBy { get; set; }
     public string UpdatedBy { get; set; }
+
+    public void UpdateCreationData(string userId)
+    {
+        CreatedAt = DateTime.UtcNow;
+        UpdatedAt = DateTime.UtcNow;
+        CreatedBy = userId;
+    }
+
+    public void UpdateUpdationData(string userId)
+    {
+        UpdatedAt = DateTime.UtcNow;
+        UpdatedBy = userId;
+    }
 }

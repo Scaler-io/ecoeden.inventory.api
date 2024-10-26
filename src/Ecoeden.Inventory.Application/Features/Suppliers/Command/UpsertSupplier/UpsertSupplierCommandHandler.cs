@@ -1,14 +1,80 @@
-﻿using Ecoeden.Inventory.Application.Contracts.CQRS;
-using Ecoeden.Inventory.Application.Features.Suppliers.Command.UpsertSupplier;
+﻿using AutoMapper;
+using Ecoeden.Inventory.Application.Contracts.Caching;
+using Ecoeden.Inventory.Application.Contracts.CQRS;
+using Ecoeden.Inventory.Application.Contracts.Database.Repositories;
+using Ecoeden.Inventory.Application.Contracts.Factory;
+using Ecoeden.Inventory.Application.Extensions;
+using Ecoeden.Inventory.Domain.Configurations;
+using Ecoeden.Inventory.Domain.Entities;
+using Ecoeden.Inventory.Domain.Models.Constants;
 using Ecoeden.Inventory.Domain.Models.Core;
 using Ecoeden.Inventory.Domain.Models.Dtos;
+using Ecoeden.Inventory.Domain.Models.Enums;
+using Microsoft.Extensions.Options;
 
-namespace Ecoeden.Inventory.Application.Features.Suppliers.Command.CreateSupplier;
-public class UpsertSupplierCommandHandler : ICommandHandler<UpsertSupplierCommand, Result<SupplierDto>>
+namespace Ecoeden.Inventory.Application.Features.Suppliers.Command.UpsertSupplier;
+public class UpsertSupplierCommandHandler(ILogger logger,
+    IMapper mapper,
+    IOptions<AppConfigOption> appConfigOptions,
+    IDocumentRepository<Supplier> supplierRepository,
+    ICacheServiceBuildFactory cacheServiceBuildFactory
+) : ICommandHandler<UpsertSupplierCommand, Result<SupplierDto>>
 {
+    private readonly ILogger _logger = logger;
+    private readonly IMapper _mapper = mapper;
+    private readonly AppConfigOption _appConfigOptions = appConfigOptions.Value;
+    private readonly IDocumentRepository<Supplier> _supplierRepository = supplierRepository;
+    private readonly ICacheService _cacheService = cacheServiceBuildFactory.CreateService(CacheServiceType.Distributed);
+
     public async Task<Result<SupplierDto>> Handle(UpsertSupplierCommand request, CancellationToken cancellationToken)
     {
-        await Task.CompletedTask;
-        return Result<SupplierDto>.Success(request.Supplier);
+        _logger.Here().MethodEntered();
+        _logger.Here().WithCorrelationId(request.RequestInformation.CorrelationId)
+            .Information("Request - create or update supplier {name}", request.Supplier.Name);
+
+        SupplierDto supplierDto = new();
+        
+
+        if (string.IsNullOrEmpty(request.Supplier.Id))
+        {
+            var existingSupplier = await _supplierRepository.GetByPredicateAsync(supplier => supplier.Name.Equals(request.Supplier.Name, StringComparison.CurrentCultureIgnoreCase),
+            MongoDbCollectionNames.Suppliers);
+
+            if (existingSupplier is not null)
+            {
+                _logger.Here().Error("The supplier {name} already exists", request.Supplier.Name);
+                return Result<SupplierDto>.Faliure(ErrorCodes.BadRequest, "Supplier name already exists");
+            }
+            supplierDto = await CreateSupplierResult(request);
+        }
+        else
+        {
+            supplierDto = await UpdateSupplierResult(request);
+        }
+
+        // cache invalidation
+        await _cacheService.RemoveAsync(_appConfigOptions.SupplierStorageCacheKey, cancellationToken);
+        _logger.Here().Information("Supplier created/updated successfully");
+        _logger.Here().MethodExited();
+
+        return Result<SupplierDto>.Success(supplierDto);
+    }
+
+    private async Task<SupplierDto> CreateSupplierResult(UpsertSupplierCommand request)
+    {
+        var supplier = _mapper.Map<Supplier>(request.Supplier);
+        supplier.UpdateCreationData(request.RequestInformation.CurrentUser.Id);
+        await _supplierRepository.UpsertAsync(supplier, MongoDbCollectionNames.Suppliers);
+        return _mapper.Map<SupplierDto>(supplier);
+    }
+
+    private async Task<SupplierDto> UpdateSupplierResult(UpsertSupplierCommand request)
+    {
+        var existingSupplier = await _supplierRepository.GetByIdAsync(request.Supplier.Id, MongoDbCollectionNames.Suppliers);
+        var supplier = (Supplier)_mapper.Map(request.Supplier, existingSupplier, typeof(SupplierDto), typeof(Supplier));
+
+        supplier.UpdateUpdationData(request.RequestInformation.CurrentUser.Id);
+        await _supplierRepository.UpsertAsync(supplier, MongoDbCollectionNames.Suppliers);
+        return _mapper.Map<SupplierDto>(supplier);
     }
 }

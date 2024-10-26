@@ -34,7 +34,6 @@ public class ApiBaseController(ILogger logger, IIdentityService identityService)
 
         return result.ErrorCode switch
         {
-            ErrorCodes.BadRequest => BadRequest(new ApiValidationResponse(result.ErrorMessage)),
             ErrorCodes.InternalServerError => InternalServerError(new ApiExceptionResponse(result.ErrorMessage)),
             ErrorCodes.NotFound => NotFound(new ApiResponse(ErrorCodes.NotFound, result.ErrorMessage)),
             ErrorCodes.Unauthorized => Unauthorized(new ApiResponse(ErrorCodes.Unauthorized, result.ErrorMessage)),
