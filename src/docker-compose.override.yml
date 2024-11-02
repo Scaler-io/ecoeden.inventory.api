@@ -42,7 +42,11 @@ services:
       - MongoDb__ConnectionString=mongodb://inventoryDb:27017
       - MongoDb__Database=InventoryDb
       - ConnectionStrings__Redis=redis:6379
+      - "ConnectionStrings__Sqlserver=Server=sqlserver;Database=EcoedenEvent;User Id=sa;Password=P@ssw0rd;Encrypt=True;TrustServerCertificate=True;"
       - Redis__InstanceName=Ecoeden.Inventory.Cache
+      - EventBus__Host=rabbitmq
+      - EventBus__Username=guest
+      - EventBus__Password=guest
     ports:
       - "5004:8080"
     depends_on:
