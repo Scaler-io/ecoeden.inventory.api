@@ -1,6 +1,9 @@
-﻿using Ecoeden.Inventory.Application.Contracts.Caching;
+﻿
+using Contracts.Events;
+using Ecoeden.Inventory.Application.Contracts.Caching;
 using Ecoeden.Inventory.Application.Contracts.CQRS;
 using Ecoeden.Inventory.Application.Contracts.Database.Repositories;
+using Ecoeden.Inventory.Application.Contracts.EventBus;
 using Ecoeden.Inventory.Application.Contracts.Factory;
 using Ecoeden.Inventory.Application.Extensions;
 using Ecoeden.Inventory.Domain.Configurations;
@@ -14,12 +17,14 @@ namespace Ecoeden.Inventory.Application.Features.Suppliers.Command.DeleteSupplie
 public class DeleteSupplierCommandHandler(ILogger logger,
     ICacheServiceBuildFactory cacheServiceBuildFactory,
     IOptions<AppConfigOption> appConfigOptions,
-    IDocumentRepository<Supplier> supplierRepository) : ICommandHandler<DeleteSupplierCommand, Result<bool>>
+    IDocumentRepository<Supplier> supplierRepository,
+    IPublishServiceFactory publishServiceFactory) : ICommandHandler<DeleteSupplierCommand, Result<bool>>
 {
     private readonly ILogger _logger = logger;
     private readonly ICacheService _cacheService = cacheServiceBuildFactory.CreateService(Domain.Models.Enums.CacheServiceType.Distributed);
     private readonly AppConfigOption _appConfigOptions = appConfigOptions.Value;
     private readonly IDocumentRepository<Supplier> _supplierRepository = supplierRepository;
+    private readonly IPublishService<Supplier, SupplierDeleted> _publishService = publishServiceFactory.CreatePublishService<Supplier, SupplierDeleted>();
 
     public async Task<Result<bool>> Handle(DeleteSupplierCommand request, CancellationToken cancellationToken)
     {
@@ -35,6 +40,11 @@ public class DeleteSupplierCommandHandler(ILogger logger,
         }
 
         await _supplierRepository.DeleteAsync(request.Id, MongoDbCollectionNames.Suppliers);
+
+        await _publishService.PublishAsync(isExisting, request.RequestInformation.CorrelationId, new()
+        {
+            { "applicationName", _appConfigOptions.ApplicationIdentifier }
+        });
 
         // cache invalidation
         await _cacheService.RemoveAsync(_appConfigOptions.SupplierStorageCacheKey, cancellationToken);

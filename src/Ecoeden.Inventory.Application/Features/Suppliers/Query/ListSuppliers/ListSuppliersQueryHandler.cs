@@ -30,7 +30,6 @@ public class ListSuppliersQueryHandler(ILogger logger,
     {
         _logger.Here().MethodEntered();
         _logger.Here()
-            .WithCorrelationId(request.RequestInformation.CorrelationId)
             .Information("Request - list all suppliers");
         
         var cacheResult = await _cacheService.GetAsync<IReadOnlyList<SupplierDto>>(_appConfigOptions.SupplierStorageCacheKey, cancellationToken);
@@ -53,7 +52,6 @@ public class ListSuppliersQueryHandler(ILogger logger,
         await _cacheService.SetAsync(_appConfigOptions.SupplierStorageCacheKey, result, cancellation: cancellationToken);
 
         _logger.Here()
-            .WithCorrelationId(request.RequestInformation.CorrelationId)
             .Information("Total {count} supplier details fetched", suppliers.Count);
         _logger.Here().MethodExited();
 

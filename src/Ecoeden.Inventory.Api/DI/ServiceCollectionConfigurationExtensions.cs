@@ -31,6 +31,11 @@ public static class ServiceCollectionConfigurationExtensions
             .ValidateDataAnnotations()
             .ValidateOnStart();
 
+        services.AddOptions<EventBusOption>()
+            .BindConfiguration(EventBusOption.OptionName)
+            .ValidateDataAnnotations()
+            .ValidateOnStart();
+
         return services;
     }
 }

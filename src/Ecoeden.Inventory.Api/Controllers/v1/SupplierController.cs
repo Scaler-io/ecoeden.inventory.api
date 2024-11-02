@@ -41,11 +41,10 @@ public class SupplierController(IMediator _mediator, ILogger logger, IIdentitySe
     // 500
     [ProducesResponseType(typeof(ApiExceptionResponse), StatusCodes.Status500InternalServerError)]
     [SwaggerResponseExample(StatusCodes.Status500InternalServerError, typeof(InternalServerErrorResponseEaxample))]
-    [RequirePermission(ApiAccess.InventoryRead)]
     public async Task<IActionResult> ListSuppliers()
     {
         Logger.Here().MethodEntered();
-        var query = new ListSuppliersQuery(RequestInformation);
+        var query = new ListSuppliersQuery();
         var result = await _mediator.Send(query);
         Logger.Here().MethodExited();
         return OkOrFailure(result);

@@ -1,4 +1,5 @@
 ﻿using Ecoeden.Inventory.Domain.Models.Dtos;
+using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -22,20 +23,20 @@ public class IdentityService(IHttpContextAccessor contextAccessor) : IIdentitySe
         var token = _contextAccessor.HttpContext.Request.Headers.Authorization;
         var claims = _contextAccessor.HttpContext.User.Claims;
 
-        if(!claims.Any())
+        if(claims.IsNullOrEmpty())
         {
             return null;
         }
 
-        var roleString = claims.Where(c => c.Type == RoleClaim).FirstOrDefault().Value;
-        var permissionString = claims.Where(c => c.Type == PermissionClaim).FirstOrDefault().Value;
+        var roleString = claims.Where(c => c.Type == RoleClaim)?.FirstOrDefault()?.Value;
+        var permissionString = claims.Where(c => c.Type == PermissionClaim)?.FirstOrDefault()?.Value;
 
         return new()
         {
-            Id = claims.Where(c => c.Type == IdClaim).FirstOrDefault().Value,
-            FirstName = claims.Where(c => c.Type == FirstNameClaim).FirstOrDefault().Value,
-            LastName = claims.Where(c => c.Type == LastNameClaim).FirstOrDefault().Value,
-            UserName = claims.Where(c => c.Type == UsernameClaim).FirstOrDefault().Value,
+            Id = claims.Where(c => c.Type == IdClaim)?.FirstOrDefault()?.Value,
+            FirstName = claims.Where(c => c.Type == FirstNameClaim)?.FirstOrDefault()?.Value,
+            LastName = claims.Where(c => c.Type == LastNameClaim)?.FirstOrDefault()?.Value,
+            UserName = claims.Where(c => c.Type == UsernameClaim)?.FirstOrDefault()?.Value,
             AuthorizationDto = new AuthorizationDto
             {
                 Roles = JsonConvert.DeserializeObject<List<string>>(roleString),
