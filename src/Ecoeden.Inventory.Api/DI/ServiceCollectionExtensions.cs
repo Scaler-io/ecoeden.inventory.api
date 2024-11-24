@@ -89,8 +89,8 @@ public static class ServiceCollectionExtensions
                     ValidateIssuerSigningKey = true,
                     ValidIssuer = identityGroupAccess.Value.Authority,
                     ValidAudience = identityGroupAccess.Value.Audience,
-                    ValidateAudience = true,
-                    ValidateIssuer = true,
+                    ValidateAudience = false,
+                    ValidateIssuer = false,
                     ClockSkew = TimeSpan.Zero
                 };
             });
