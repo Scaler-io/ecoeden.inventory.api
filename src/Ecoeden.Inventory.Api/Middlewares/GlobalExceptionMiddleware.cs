@@ -92,7 +92,6 @@ public sealed class GlobalExceptionMiddleware(ILogger logger, IWebHostEnvironmen
         }
 
         // Trigger the InvalidModelStateResponseFactory by setting ModelState and ending the pipeline
-        context.Response.StatusCode = StatusCodes.Status400BadRequest;
         await context.Response.CompleteAsync();  // Stops the request pipeline here
     }
 }
