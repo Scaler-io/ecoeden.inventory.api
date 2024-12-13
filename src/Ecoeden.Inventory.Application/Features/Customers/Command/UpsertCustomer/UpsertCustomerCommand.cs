@@ -4,9 +4,9 @@ using Ecoeden.Inventory.Domain.Models.Core;
 using Ecoeden.Inventory.Domain.Models.Dtos;
 
 namespace Ecoeden.Inventory.Application.Features.Customers.Command.UpsertCustomer;
-public class UpsertCustomerCommand : ICommand<Result<CustomerDto>>
+public class UpsertCustomerCommand(CustomerDto customer, RequestInformation requestInformation) : ICommand<Result<CustomerDto>>
 {
     [ValidateNested]
-    public CustomerDto Customer { get; set; }
-    public RequestInformation RequestInformation { get; set; }
+    public CustomerDto Customer { get; set; } = customer;
+    public RequestInformation RequestInformation { get; set; } = requestInformation;
 }

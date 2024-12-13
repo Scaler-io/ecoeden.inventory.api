@@ -37,7 +37,7 @@ public class UpsertCustomerCommandHandler(ILogger logger,
         if(string.IsNullOrEmpty(request.Customer.Id))
         {
             customerDto = await CreateCustomer(request);
-        }
+        } 
         else
         {
             customerDto = await UpdateCustomer(request);

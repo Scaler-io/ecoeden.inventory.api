@@ -1,8 +1,6 @@
-﻿using Contracts.Events;
-using Ecoeden.Inventory.Application.Contracts.Caching;
+﻿using Ecoeden.Inventory.Application.Contracts.Caching;
 using Ecoeden.Inventory.Application.Contracts.CQRS;
 using Ecoeden.Inventory.Application.Contracts.Database.Repositories;
-using Ecoeden.Inventory.Application.Contracts.EventBus;
 using Ecoeden.Inventory.Application.Contracts.Factory;
 using Ecoeden.Inventory.Application.Extensions;
 using Ecoeden.Inventory.Domain.Configurations;
