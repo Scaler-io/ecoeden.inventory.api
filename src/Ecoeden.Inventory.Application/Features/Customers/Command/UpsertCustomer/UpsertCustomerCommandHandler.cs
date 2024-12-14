@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
+using Contracts.Events;
 using Ecoeden.Inventory.Application.Contracts.Caching;
 using Ecoeden.Inventory.Application.Contracts.CQRS;
 using Ecoeden.Inventory.Application.Contracts.Database.Repositories;
+using Ecoeden.Inventory.Application.Contracts.EventBus;
 using Ecoeden.Inventory.Application.Contracts.Factory;
 using Ecoeden.Inventory.Application.Extensions;
 using Ecoeden.Inventory.Domain.Configurations;
@@ -16,13 +18,15 @@ public class UpsertCustomerCommandHandler(ILogger logger,
     IMapper mapper, 
     IOptions<AppConfigOption> appConfigOptions, 
     ICacheServiceBuildFactory cacheServiceFactory, 
-    IDocumentRepository<Customer> customerRepository
+    IDocumentRepository<Customer> customerRepository,
+    IPublishServiceFactory publishFactory
 ) : ICommandHandler<UpsertCustomerCommand, Result<CustomerDto>>
 {
     private readonly ILogger _logger = logger;
     private readonly IMapper _mapper = mapper;
     private readonly AppConfigOption _appConfigOptions = appConfigOptions.Value;
     private readonly IDocumentRepository<Customer> _customerRepository = customerRepository;
+    private readonly IPublishServiceFactory _publishServiceFactory = publishFactory;
     private readonly ICacheService _cacheService = cacheServiceFactory.CreateService(Domain.Models.Enums.CacheServiceType.Distributed);
 
     public async Task<Result<CustomerDto>> Handle(UpsertCustomerCommand request, CancellationToken cancellationToken)
@@ -54,16 +58,15 @@ public class UpsertCustomerCommandHandler(ILogger logger,
     {
         var customer = _mapper.Map<Customer>(request.Customer);
 
-        //var publishService = _publishServiceFactory.CreatePublishService<Supplier, SupplierCreated>();
-        //supplier.UpdateCreationData(request.RequestInformation.CurrentUser.Id);
+        var publishService = _publishServiceFactory.CreatePublishService<Customer, CustomerCreated>();
 
         customer.UpdateCreationData(request.RequestInformation.CurrentUser.Id);
         await _customerRepository.UpsertAsync(customer, MongoDbCollectionNames.Customers);
 
-        //await publishService.PublishAsync(supplier, request.RequestInformation.CorrelationId, new()
-        //{
-        //    { "applicationName", _appConfigOptions.ApplicationIdentifier }
-        //});
+        await publishService.PublishAsync(customer, request.RequestInformation.CorrelationId, new()
+        {
+            { "applicationName", _appConfigOptions.ApplicationIdentifier }
+        });
 
         return _mapper.Map<CustomerDto>(customer);
     }
@@ -72,17 +75,17 @@ public class UpsertCustomerCommandHandler(ILogger logger,
     {
         var existingCustomer = await _customerRepository.GetByIdAsync(request.Customer.Id, MongoDbCollectionNames.Customers);
 
-        //var publishService = _publishServiceFactory.CreatePublishService<Supplier, SupplierUpdated>();
+        var publishService = _publishServiceFactory.CreatePublishService<Customer, CustomerUpdated>();
 
         var customer = (Customer)_mapper.Map(request.Customer, existingCustomer, typeof(CustomerDto), typeof(Customer));
         customer.UpdateUpdationData(request.RequestInformation.CurrentUser.Id);
 
         await _customerRepository.UpsertAsync(customer, MongoDbCollectionNames.Customers);
 
-        //await publishService.PublishAsync(customer, request.RequestInformation.CorrelationId, new()
-        //{
-        //    { "applicationName", _appConfigOptions.ApplicationIdentifier }
-        //});
+        await publishService.PublishAsync(customer, request.RequestInformation.CorrelationId, new()
+        {
+            { "applicationName", _appConfigOptions.ApplicationIdentifier }
+        });
 
         return _mapper.Map<CustomerDto>(customer);
     }

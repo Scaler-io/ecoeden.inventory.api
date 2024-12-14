@@ -1,6 +1,8 @@
-﻿using Ecoeden.Inventory.Application.Contracts.Caching;
+﻿using Contracts.Events;
+using Ecoeden.Inventory.Application.Contracts.Caching;
 using Ecoeden.Inventory.Application.Contracts.CQRS;
 using Ecoeden.Inventory.Application.Contracts.Database.Repositories;
+using Ecoeden.Inventory.Application.Contracts.EventBus;
 using Ecoeden.Inventory.Application.Contracts.Factory;
 using Ecoeden.Inventory.Application.Extensions;
 using Ecoeden.Inventory.Domain.Configurations;
@@ -14,14 +16,15 @@ namespace Ecoeden.Inventory.Application.Features.Customers.Command.DeleteCustome
 public class DeleteCustomerCommandHandler(ILogger logger,
     ICacheServiceBuildFactory cacheServiceBuildFactory,
     IOptions<AppConfigOption> appConfigOptions,
-    IDocumentRepository<Customer> customerRepository
+    IDocumentRepository<Customer> customerRepository,
+    IPublishServiceFactory publishServiceFactory
 ) : ICommandHandler<DeleteCustomerCommand, Result<bool>>
 {
     private readonly ILogger _logger = logger;
-    private readonly ICacheService _cacheService = cacheServiceBuildFactory.CreateService(Domain.Models.Enums.CacheServiceType.Distributed);
     private readonly AppConfigOption _appConfigOptions = appConfigOptions.Value;
     private readonly IDocumentRepository<Customer> _customerRepository = customerRepository;
-
+    private readonly ICacheService _cacheService = cacheServiceBuildFactory.CreateService(Domain.Models.Enums.CacheServiceType.Distributed);
+    private readonly IPublishService<Customer, CustomerDeleted> _publishService = publishServiceFactory.CreatePublishService<Customer, CustomerDeleted>();
 
     public async Task<Result<bool>> Handle(DeleteCustomerCommand request, CancellationToken cancellationToken)
     {
@@ -38,10 +41,10 @@ public class DeleteCustomerCommandHandler(ILogger logger,
 
         await _customerRepository.DeleteAsync(request.Id, MongoDbCollectionNames.Customers);
 
-        //await _publishService.PublishAsync(isExisting, request.RequestInformation.CorrelationId, new()
-        //{
-        //    { "applicationName", _appConfigOptions.ApplicationIdentifier }
-        //});
+        await _publishService.PublishAsync(isExisting, request.RequestInformation.CorrelationId, new()
+        {
+            { "applicationName", _appConfigOptions.ApplicationIdentifier }
+        });
 
         await _cacheService.RemoveAsync(_appConfigOptions.CustomerStorageCacheKey, cancellationToken);
 

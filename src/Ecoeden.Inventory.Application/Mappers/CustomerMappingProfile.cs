@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Contracts.Events;
 using Ecoeden.Inventory.Application.Helpers;
 using Ecoeden.Inventory.Domain.Entities;
 using Ecoeden.Inventory.Domain.Models.Dtos;
@@ -18,5 +19,21 @@ public sealed class CustomerMappingProfile : Profile
                 CreatedBy = s.CreatedBy,
                 UpdatedBy = s.UpdatedBy,
             })).ReverseMap();
+
+        CreateMap<Customer, CustomerCreated>()
+            .ForMember(d => d.Email, o => o.MapFrom(s => s.ContactDetails.Email))
+            .ForMember(d => d.Phone, o => o.MapFrom(s => s.ContactDetails.Phone))
+            .ForMember(d => d.Address, o => o.MapFrom(s => s.ContactDetails.Address.GetAddressString()))
+            .ForMember(d => d.CreatedOn, o => o.MapFrom(s => s.CreatedAt))
+            .ForMember(d => d.LastUpdatedOn, o => o.MapFrom(s => s.UpdatedAt)).ReverseMap();
+
+        CreateMap<Customer, CustomerUpdated>()
+            .ForMember(d => d.Email, o => o.MapFrom(s => s.ContactDetails.Email))
+            .ForMember(d => d.Phone, o => o.MapFrom(s => s.ContactDetails.Phone))
+            .ForMember(d => d.Address, o => o.MapFrom(s => s.ContactDetails.Address.GetAddressString()))
+            .ForMember(d => d.CreatedOn, o => o.MapFrom(s => s.CreatedAt))
+            .ForMember(d => d.LastUpdatedOn, o => o.MapFrom(s => s.UpdatedAt)).ReverseMap();
+
+        CreateMap<Customer, CustomerDeleted>().ReverseMap();
     }
 }
