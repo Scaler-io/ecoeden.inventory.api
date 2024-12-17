@@ -7,4 +7,5 @@ public sealed class AppConfigOption
     public int HealthCheckTimeoutInSeconds { get; set; }
     public int CacheExpiration { get; set; }
     public string SupplierStorageCacheKey { get; set; }
+    public string CustomerStorageCacheKey { get; set; }
 }

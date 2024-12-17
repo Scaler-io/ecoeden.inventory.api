@@ -59,6 +59,7 @@ public static class InfrastructureServiceCollectionExtnsions
         services.AddMassTransit(config =>
         {
             config.SetEndpointNameFormatter(new KebabCaseEndpointNameFormatter("suppliers", false));
+            config.SetEndpointNameFormatter(new KebabCaseEndpointNameFormatter("customers", false));
             config.UsingRabbitMq((context, cfg) =>
             {
                 var rabbitMq = configuration.GetSection(EventBusOption.OptionName).Get<EventBusOption>();

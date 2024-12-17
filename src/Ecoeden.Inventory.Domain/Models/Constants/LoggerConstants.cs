@@ -7,4 +7,5 @@ public sealed class LoggerConstants
     public const string MemberName = "MemberName";
     public const string CallerType = "CallerType";
     public const string SupplierId = "SupplierId";
+    public const string CustomerId = "CustomerId";
 }

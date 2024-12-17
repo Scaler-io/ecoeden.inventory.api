@@ -9,6 +9,7 @@ public static class RegisteredValdatorContext
     public static IServiceCollection AddValidators(this IServiceCollection services)
     {
         services.AddScoped<IValidator<SupplierDto>, SupplierValidator>();
+        services.AddScoped<IValidator<CustomerDto>, CustomerValidator>();
         return services;
     }
 }

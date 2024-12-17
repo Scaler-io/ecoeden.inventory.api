@@ -8,7 +8,7 @@ public class EventPublishHistoryEntityConfiguration : IEntityTypeConfiguration<E
 {
     public void Configure(EntityTypeBuilder<EventPublishHistory> builder)
     {
-        builder.ToTable("EventPublishHistories");
+        builder.ToTable("EventPublishHistories", "ecoeden.event");
 
         builder.HasKey(c => c.Id);
         builder.Property(c => c.Id).ValueGeneratedOnAdd();

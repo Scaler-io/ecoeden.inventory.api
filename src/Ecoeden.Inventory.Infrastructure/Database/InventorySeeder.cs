@@ -13,7 +13,7 @@ public static class InventorySeeder
 
         var supplierCollection = mongoDatabase.GetCollection<Supplier>(MongoDbCollectionNames.Suppliers);
 
-        if(await supplierCollection.CountDocumentsAsync(_ => true) < 1)
+        if (await supplierCollection.CountDocumentsAsync(_ => true) < 1)
         {
             var suppliers = FileReaderHelper<Supplier>.ReadFile("suppliers", "./AppData");
             await supplierCollection.InsertManyAsync(suppliers);

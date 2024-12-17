@@ -33,4 +33,8 @@ public static class LoggerExtensions
     {
         return logger.ForContext(LoggerConstants.SupplierId, supplierId);
     }
+    public static ILogger WithCustomerID(this ILogger logger, string customerId)
+    {
+        return logger.ForContext(LoggerConstants.SupplierId, customerId);
+    }
 }

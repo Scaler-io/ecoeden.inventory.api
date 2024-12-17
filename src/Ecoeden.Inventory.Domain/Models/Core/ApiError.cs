@@ -23,5 +23,7 @@ public sealed class ApiError
     // model specific errors
     public static ApiError SupplierNameError = new() { Code = "1001", Message = "Supplier name is required" };
     public static ApiError SupplierContactError = new() { Code = "1002", Message = "Supplier contact details are required" };
+    public static ApiError CustomerNameError = new() { Code = "1003", Message = "Customer name is required" };
+    public static ApiError CustomerContactError = new() { Code = "1004", Message = "Customer contact details are required" };
 
 }
