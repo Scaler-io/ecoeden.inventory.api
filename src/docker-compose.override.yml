@@ -47,6 +47,7 @@ services:
       - EventBus__Host=rabbitmq
       - EventBus__Username=guest
       - EventBus__Password=guest
+      - Zipkin__Url=http://ecoeden.zipkin:9411/api/v2/spans
     ports:
       - "5004:8080"
     depends_on:

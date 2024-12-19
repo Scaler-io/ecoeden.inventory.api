@@ -13,6 +13,8 @@ using Microsoft.IdentityModel.Tokens;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
+using OpenTelemetry.Resources;
+using OpenTelemetry.Trace;
 using Swashbuckle.AspNetCore.Filters;
 
 namespace Ecoeden.Inventory.Api.DI;
@@ -98,6 +100,20 @@ public static class ServiceCollectionExtensions
 
         // custom interface and its implementations
         services.AddSingleton<IIdentityService, IdentityService>();
+
+        // open telemetry trace finder
+        services.AddOpenTelemetry()
+            .ConfigureResource(option => option.AddService(configuration["AppConfigurations:ApplicationIdentifier"]))
+            .WithTracing(tracing =>
+            {
+                tracing.AddAspNetCoreInstrumentation()
+                    .AddHttpClientInstrumentation()
+                    .AddSqlClientInstrumentation(o => o.SetDbStatementForText = true)
+                    .AddZipkinExporter(options =>
+                    {
+                        options.Endpoint = new Uri(configuration["Zipkin:Url"]);
+                    });
+            });
 
         return services;
     }
