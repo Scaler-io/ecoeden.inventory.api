@@ -3,5 +3,8 @@ public enum GenericEventType
 {
     SupplierCreated,
     SupplierUpdated,
-    SupplierDeleted
+    SupplierDeleted,
+    CustomerCreated,
+    CustomerUpdated,
+    CustomerDeleted
 }
