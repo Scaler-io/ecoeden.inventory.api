@@ -60,6 +60,8 @@ public static class InfrastructureServiceCollectionExtnsions
         {
             config.SetEndpointNameFormatter(new KebabCaseEndpointNameFormatter("suppliers", false));
             config.SetEndpointNameFormatter(new KebabCaseEndpointNameFormatter("customers", false));
+            config.SetEndpointNameFormatter(new KebabCaseEndpointNameFormatter("units", false));
+
             config.UsingRabbitMq((context, cfg) =>
             {
                 var rabbitMq = configuration.GetSection(EventBusOption.OptionName).Get<EventBusOption>();

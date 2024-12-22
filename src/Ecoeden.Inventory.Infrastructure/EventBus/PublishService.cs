@@ -30,8 +30,8 @@ public class PublishService<T, TEvent>(IPublishEndpoint publishEndpoint,
 
         try
         {
-            await _publishEndpoint.Publish(newEvent);
             await AddToEventStorage(newEvent, value);
+            await _publishEndpoint.Publish(newEvent);
             _logger.Here()
                 .WithCorrelationId(correlationId)
                 .Information("Successfully published {messageType} event message", typeof(TEvent).Name);

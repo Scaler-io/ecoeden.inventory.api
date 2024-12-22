@@ -8,4 +8,5 @@ public sealed class AppConfigOption
     public int CacheExpiration { get; set; }
     public string SupplierStorageCacheKey { get; set; }
     public string CustomerStorageCacheKey { get; set; }
+    public string UnitStorageCacheKey { get; set; }
 }
