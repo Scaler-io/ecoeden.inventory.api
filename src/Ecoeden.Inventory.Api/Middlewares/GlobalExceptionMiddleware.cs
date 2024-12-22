@@ -37,7 +37,8 @@ public sealed class GlobalExceptionMiddleware(ILogger logger, IWebHostEnvironmen
             Converters =
             [
                 new StringEnumConverter()
-            ]
+            ],
+            Formatting = Formatting.Indented
         };
 
         if (ex is ValidationException validationException)
@@ -53,14 +54,15 @@ public sealed class GlobalExceptionMiddleware(ILogger logger, IWebHostEnvironmen
     private async Task HandleGeneralException(HttpContext context, Exception ex, JsonSerializerSettings jsonSettings)
     {
         context.Response.StatusCode = StatusCodes.Status500InternalServerError;
+
         var response = _environment.IsDevelopment()
                         ? new ApiExceptionResponse(ex.Message, ex.StackTrace)
                         : new ApiExceptionResponse(ex.Message);
 
-
+        
         var jsonResponse = JsonConvert.SerializeObject(response, jsonSettings);
 
-        _logger.Here().Error("{@InternalServerError} - {@response}", ErrorCodes.InternalServerError, jsonResponse);
+        _logger.Here().Error("{@InternalServerError} - {BeautifiedJson}", ErrorCodes.InternalServerError, jsonResponse);
 
         await context.Response.WriteAsync(jsonResponse);
     }

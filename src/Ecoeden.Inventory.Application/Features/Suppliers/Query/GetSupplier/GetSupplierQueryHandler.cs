@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
-using Ecoeden.Inventory.Application.Contracts.Caching;
 using Ecoeden.Inventory.Application.Contracts.CQRS;
 using Ecoeden.Inventory.Application.Contracts.Database.Repositories;
-using Ecoeden.Inventory.Application.Contracts.Factory;
 using Ecoeden.Inventory.Application.Extensions;
 using Ecoeden.Inventory.Domain.Entities;
 using Ecoeden.Inventory.Domain.Models.Constants;
@@ -11,12 +9,11 @@ using Ecoeden.Inventory.Domain.Models.Dtos;
 using Ecoeden.Inventory.Domain.Models.Enums;
 
 namespace Ecoeden.Inventory.Application.Features.Suppliers.Query.GetSupplier;
-public class GetSupplierQueryHandler(ILogger logger, IDocumentRepository<Supplier> supplierRepository, ICacheServiceBuildFactory cacheFactory, IMapper mapper) 
+public class GetSupplierQueryHandler(ILogger logger, IDocumentRepository<Supplier> supplierRepository, IMapper mapper) 
     : IQueryHandler<GetSupplierQuery, Result<SupplierDto>>
 {
     private readonly ILogger _logger = logger;
     private readonly IMapper _mapper = mapper;
-    private readonly ICacheService _cacheService = cacheFactory.CreateService(Domain.Models.Enums.CacheServiceType.Distributed); 
     private readonly IDocumentRepository<Supplier> _supplierRepository = supplierRepository;
 
     public async Task<Result<SupplierDto>> Handle(GetSupplierQuery request, CancellationToken cancellationToken)

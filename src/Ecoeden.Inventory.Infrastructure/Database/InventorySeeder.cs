@@ -12,11 +12,18 @@ public static class InventorySeeder
         IMongoDatabase mongoDatabase = context.GetDatabaseInstance();
 
         var supplierCollection = mongoDatabase.GetCollection<Supplier>(MongoDbCollectionNames.Suppliers);
+        var unitCollection = mongoDatabase.GetCollection<Unit>(MongoDbCollectionNames.Units);
 
         if (await supplierCollection.CountDocumentsAsync(_ => true) < 1)
         {
             var suppliers = FileReaderHelper<Supplier>.ReadFile("suppliers", "./AppData");
             await supplierCollection.InsertManyAsync(suppliers);
+        }
+
+        if(await unitCollection.CountDocumentsAsync(_ => true) < 1)
+        {
+            var units = FileReaderHelper<Unit>.ReadFile("units", "./AppData");
+            await unitCollection.InsertManyAsync(units);
         }
     }
 }

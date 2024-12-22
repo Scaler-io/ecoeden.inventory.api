@@ -25,5 +25,6 @@ public sealed class ApiError
     public static ApiError SupplierContactError = new() { Code = "1002", Message = "Supplier contact details are required" };
     public static ApiError CustomerNameError = new() { Code = "1003", Message = "Customer name is required" };
     public static ApiError CustomerContactError = new() { Code = "1004", Message = "Customer contact details are required" };
+    public static ApiError UnitNameError = new() { Code = "1005", Message = "Unit name is required" };
 
 }

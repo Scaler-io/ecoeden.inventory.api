@@ -1,0 +1,47 @@
+[
+  {
+    "Id": "63fca9a6e22a4c1a8e1c2b15",
+    "Name": "Kilogram",
+    "Status": true,
+    "CreatedAt": "2024-12-21T10:00:00Z",
+    "UpdatedAt": "2024-12-21T10:00:00Z",
+    "CreatedBy": "admin",
+    "UpdatedBy": "admin"
+  },
+  {
+    "Id": "63fca9a6e22a4c1a8e1c2b16",
+    "Name": "Gram",
+    "Status": true,
+    "CreatedAt": "2024-12-21T10:05:00Z",
+    "UpdatedAt": "2024-12-21T10:05:00Z",
+    "CreatedBy": "admin",
+    "UpdatedBy": "admin"
+  },
+  {
+    "Id": "63fca9a6e22a4c1a8e1c2b17",
+    "Name": "Liter",
+    "Status": true,
+    "CreatedAt": "2024-12-21T10:10:00Z",
+    "UpdatedAt": "2024-12-21T10:10:00Z",
+    "CreatedBy": "admin",
+    "UpdatedBy": "admin"
+  },
+  {
+    "Id": "63fca9a6e22a4c1a8e1c2b18",
+    "Name": "Milliliter",
+    "Status": true,
+    "CreatedAt": "2024-12-21T10:15:00Z",
+    "UpdatedAt": "2024-12-21T10:15:00Z",
+    "CreatedBy": "admin",
+    "UpdatedBy": "admin"
+  },
+  {
+    "Id": "63fca9a6e22a4c1a8e1c2b19",
+    "Name": "Piece",
+    "Status": true,
+    "CreatedAt": "2024-12-21T10:20:00Z",
+    "UpdatedAt": "2024-12-21T10:20:00Z",
+    "CreatedBy": "admin",
+    "UpdatedBy": "admin"
+  }
+]
