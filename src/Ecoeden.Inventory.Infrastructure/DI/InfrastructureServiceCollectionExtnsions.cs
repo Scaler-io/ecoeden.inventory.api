@@ -3,6 +3,7 @@ using Ecoeden.Inventory.Application.Contracts.Database.Repositories;
 using Ecoeden.Inventory.Application.Contracts.Database.SQL;
 using Ecoeden.Inventory.Application.Contracts.EventBus;
 using Ecoeden.Inventory.Application.Contracts.Factory;
+using Ecoeden.Inventory.Application.Contracts.Resilience;
 using Ecoeden.Inventory.Application.Contracts.Security;
 using Ecoeden.Inventory.Domain.Configurations;
 using Ecoeden.Inventory.Infrastructure.Caching;
@@ -13,6 +14,7 @@ using Ecoeden.Inventory.Infrastructure.Database.SQL.Repositories;
 using Ecoeden.Inventory.Infrastructure.EventBus;
 using Ecoeden.Inventory.Infrastructure.Factory;
 using Ecoeden.Inventory.Infrastructure.HealthCheck;
+using Ecoeden.Inventory.Infrastructure.Resilience;
 using Ecoeden.Inventory.Infrastructure.Security;
 using MassTransit;
 using Microsoft.EntityFrameworkCore;
@@ -75,6 +77,9 @@ public static class InfrastructureServiceCollectionExtnsions
 
         services.AddScoped(typeof(IPublishService<,>), typeof(PublishService<,>));
         services.AddScoped<IPublishServiceFactory, PublishServiceFactory>();
+
+
+        services.AddSingleton<IRetryPolicyService, RetryPolicyService>();
 
         return services;
     }
