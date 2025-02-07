@@ -1,37 +1,37 @@
 ﻿using Ecoeden.Inventory.Application.Contracts.Database.SQL;
 using Ecoeden.Inventory.Domain.Entities.SQL;
-using Ecoeden.Inventory.Infrastructure.Database.SQL.Specification;
 using Microsoft.EntityFrameworkCore;
+using System.Linq.Expressions;
 
 namespace Ecoeden.Inventory.Infrastructure.Database.SQL.Repositories;
-public class BaseRepository<TEntity>(EcoedenDbContext context) : 
+public class BaseRepository<TEntity>(DbContext context): 
     IBaseRepository<TEntity> where TEntity : SQLBaseEntity
 {
-    private readonly EcoedenDbContext _context = context;
+    private readonly DbContext _context = context;
 
     public async Task<TEntity> GetByIdAsync(object id)
     {
         return await _context.Set<TEntity>().FindAsync(id);
     }
 
-    public async Task<TEntity> GetEntityWithSpec(ISpecification<TEntity> spec)
+    public async Task<TEntity> GetEntityByPredicate(Expression<Func<TEntity, bool>> expression)
     {
-        return await ApplySpecification(spec).FirstOrDefaultAsync();
+        return await _context.Set<TEntity>().AsNoTracking().Where(expression).FirstOrDefaultAsync();
     }
 
     public async Task<IReadOnlyList<TEntity>> ListAllAsync()
     {
-        return await _context.Set<TEntity>().ToListAsync();
+        return await _context.Set<TEntity>().AsNoTracking().ToListAsync();
     }
 
-    public async Task<IReadOnlyList<TEntity>> ListAsync(ISpecification<TEntity> spec)
+    public async Task<IReadOnlyList<TEntity>> ListAsync(Expression<Func<TEntity, bool>> expression)
     {
-        return await ApplySpecification(spec).ToListAsync();
+        return await _context.Set<TEntity>().AsNoTracking().Where(expression).ToListAsync();
     }
 
-    public async Task<int> CountAsync(ISpecification<TEntity> spec)
+    public async Task<int> CountAsync(Expression<Func<TEntity, bool>> expression)
     {
-        return await ApplySpecification(spec).CountAsync();
+        return await _context.Set<TEntity>().AsNoTracking().Where(expression).CountAsync();
     }
 
     public void Add(TEntity entity)
@@ -48,10 +48,5 @@ public class BaseRepository<TEntity>(EcoedenDbContext context) :
     public void Delete(TEntity entity)
     {
         _context.Set<TEntity>().Remove(entity);
-    }
-
-    private IQueryable<TEntity> ApplySpecification(ISpecification<TEntity> spec)
-    {
-        return SpecificationEvaluator<TEntity>.GetQuery(_context.Set<TEntity>().AsQueryable(), spec);
     }
 }

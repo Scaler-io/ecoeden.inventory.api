@@ -7,12 +7,13 @@ using Ecoeden.Inventory.Domain.Entities.SQL;
 using Ecoeden.Inventory.Domain.Events;
 using Newtonsoft.Json;
 using MassTransit;
+using Ecoeden.Inventory.Application.Contracts.Factory;
 
 namespace Ecoeden.Inventory.Infrastructure.EventBus;
 public class PublishService<T, TEvent>(IPublishEndpoint publishEndpoint,
     IMapper mapper,
     ILogger logger,
-    IUnitOfWork unitOfWork,
+    IUnitOfWorkFactory unitOfWorkFactory,
     IRetryPolicyService retryPolicyService) : IPublishService<T, TEvent>
     where T : class
     where TEvent : GenericEvent
@@ -20,8 +21,8 @@ public class PublishService<T, TEvent>(IPublishEndpoint publishEndpoint,
     private readonly IMapper _mapper = mapper;
     private readonly ILogger _logger = logger;
     private readonly IPublishEndpoint _publishEndpoint = publishEndpoint;
-    private readonly IUnitOfWork _unitOfWork = unitOfWork;
-    private readonly IBaseRepository<EventPublishHistory> _eventPublishRepository = unitOfWork.Repository<EventPublishHistory>();
+    private readonly IUnitOfWork _unitOfWork = unitOfWorkFactory.CreateUnitOfWork("ecoeden");
+    private readonly IBaseRepository<EventPublishHistory> _eventPublishRepository = unitOfWorkFactory.CreateUnitOfWork("ecoeden").Repository<EventPublishHistory>();
     private readonly IRetryPolicyService _retryPolicyService = retryPolicyService;
 
     public async Task PublishAsync(T message, string correlationId, Dictionary<string, string> additionalProperties = null)

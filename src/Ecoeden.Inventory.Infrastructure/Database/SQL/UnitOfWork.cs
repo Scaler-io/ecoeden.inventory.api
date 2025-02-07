@@ -1,12 +1,13 @@
 ﻿using Ecoeden.Inventory.Application.Contracts.Database.SQL;
 using Ecoeden.Inventory.Domain.Entities.SQL;
 using Ecoeden.Inventory.Infrastructure.Database.SQL.Repositories;
+using Microsoft.EntityFrameworkCore;
 using System.Collections;
 
 namespace Ecoeden.Inventory.Infrastructure.Database.SQL;
-public class UnitOfWork(EcoedenDbContext context) : IUnitOfWork
+public class UnitOfWork(DbContext context) : IUnitOfWork
 {
-    private readonly EcoedenDbContext _context = context;
+    private readonly DbContext _context = context;
     private Hashtable _repositories;
 
     public async Task<int> Complete() => await _context.SaveChangesAsync();

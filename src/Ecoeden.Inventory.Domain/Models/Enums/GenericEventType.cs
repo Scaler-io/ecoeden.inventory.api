@@ -9,5 +9,8 @@ public enum GenericEventType
     CustomerDeleted,
     UnitCreated,
     UnitUpdated,
-    UnitDeleted
+    UnitDeleted,
+    StockCreated,
+    StockUpdated,
+    StockDeleted,
 }

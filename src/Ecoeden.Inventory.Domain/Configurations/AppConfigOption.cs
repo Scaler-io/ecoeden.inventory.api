@@ -9,4 +9,5 @@ public sealed class AppConfigOption
     public string SupplierStorageCacheKey { get; set; }
     public string CustomerStorageCacheKey { get; set; }
     public string UnitStorageCacheKey { get; set; }
+    public string StockStorageCacheKey { get; set; }
 }

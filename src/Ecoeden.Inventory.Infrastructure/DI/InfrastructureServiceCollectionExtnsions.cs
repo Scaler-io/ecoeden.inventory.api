@@ -53,10 +53,16 @@ public static class InfrastructureServiceCollectionExtnsions
 
         services.AddDbContext<EcoedenDbContext>(options =>
         {
-            options.UseSqlServer(configuration.GetConnectionString("Sqlserver"));
+            options.UseSqlServer(configuration.GetConnectionString("SqlEventDatabase"));
         });
-        services.AddScoped<IUnitOfWork, UnitOfWork>();
-        services.AddScoped(typeof(IBaseRepository<>), typeof(BaseRepository<>));
+
+        services.AddDbContext<EcoedenStockDbContext>(options =>
+        {
+            options.UseSqlServer(configuration.GetConnectionString("SqlStockDatabase"),
+                options => options.MigrationsHistoryTable("__EFMigrationsHistory", "ecoeden.stock"));
+        });
+
+        services.AddScoped<IUnitOfWorkFactory, UnitOfWorkFactory>();
 
         services.AddMassTransit(config =>
         {
